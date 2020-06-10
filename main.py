@@ -11,7 +11,6 @@ from modules.masterControl import *
 
 dtmf = DTMF()
 rx   = RX()
-tx   = TX()
 mc   = MasterControl()
 
 def start():
@@ -19,8 +18,8 @@ def start():
     while(True):
         rx.recordAudio()
         
-        pin = dtmf.dtmfDecode()
-        #pin = 2
+        #pin = dtmf.dtmfDecode()
+        pin = 2
         if(pin):
             mc.select(pin)
         
