@@ -2,21 +2,23 @@ from utils.dtmf import *
 from utils.rx import *
 from utils.tx import *
 
+from modules.masterControl import *
+
 dtmf = DTMF()
-rx = RX()
-tx = TX()
+rx   = RX()
+tx   = TX()
+mc   = MasterControl()
 
 if __name__ == "__main__":
-
-    PIN = "123"
 
     ## MAIN LOOP
     while(True):
         rx.recordAudio()
         
-        code = dtmf.dtmfDecode()
-        if(code == "9"):
-            tx.playWav("wav/StarWars60.wav")
+        pin = dtmf.dtmfDecode()
+        #pin = 2
+        if(pin):
+            mc.select(pin)
         
     rx.killAudio()
     

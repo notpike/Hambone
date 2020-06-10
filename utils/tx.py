@@ -1,5 +1,4 @@
 #from gpiozero import LED
-from playsound import playsound
 
 class TX:
     
@@ -14,7 +13,3 @@ class TX:
 ##    def txOff(self):
 ##        self.GPIO.off()
 ##        return
-
-    def playWav(self, file):
-        playsound("StarWars60.wav")
-    
