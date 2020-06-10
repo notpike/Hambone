@@ -1,3 +1,9 @@
+###################################################
+# FILE: audio.py                                  #
+# AUTHOR: NotPike                                 #
+# Function: Audio out class                       #
+###################################################
+
 from playsound import playsound
 
 class Audio:

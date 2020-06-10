@@ -1,7 +1,12 @@
+###################################################
+# FILE: main.py                                   #
+# AUTHOR: NotPike                                 #
+# Function: main.                                 #
+###################################################
+
 from utils.dtmf import *
 from utils.rx import *
 from utils.tx import *
-
 from modules.masterControl import *
 
 dtmf = DTMF()
@@ -9,8 +14,7 @@ rx   = RX()
 tx   = TX()
 mc   = MasterControl()
 
-if __name__ == "__main__":
-
+def start():
     ## MAIN LOOP
     while(True):
         rx.recordAudio()
@@ -21,4 +25,6 @@ if __name__ == "__main__":
             mc.select(pin)
         
     rx.killAudio()
-    
+
+if __name__ == "__main__":
+    start()

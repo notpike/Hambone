@@ -1,3 +1,11 @@
+###################################################
+# FILE: rx.py                                     #
+# AUTHOR: NotPike                                 #
+# Function: Handles audio record, functions       #
+#           refered from alijamaliz.              #
+#   https://github.com/alijamaliz/DTMF-detector   #
+###################################################
+
 from scipy.io import wavfile as wav
 import pyaudio
 import wave
@@ -44,7 +52,6 @@ class RX:
         waveFile.setframerate(self.RATE)
         waveFile.writeframes(b''.join(frames))
         waveFile.close()
-
 
     def killAudio(self):
         self.audio.terminate()

@@ -1,4 +1,10 @@
-#from gpiozero import LED
+###################################################
+# FILE: tx.py                                     #
+# AUTHOR: NotPike                                 #
+# Function: Handles GPIO pins                     #
+###################################################
+
+from gpiozero import LED
 
 class TX:
     
@@ -6,10 +12,8 @@ class TX:
         #self.GPIO = LED(gpio)
         self.GPIO = gpio
 
-##    def txOn(self):
-##        self.GPIO.on()
-##        return
-##
-##    def txOff(self):
-##        self.GPIO.off()
-##        return
+    def txOn(self):
+        self.GPIO.on()
+
+    def txOff(self):
+        self.GPIO.off()

@@ -1,3 +1,11 @@
+###################################################
+# FILE: dtmf.py                                   #
+# AUTHOR: NotPike                                 #
+# Function: Handles dtmf decoding, functions      #
+#           refered from alijamaliz.              #
+#   https://github.com/alijamaliz/DTMF-detector   #
+###################################################
+
 from scipy.io import wavfile as wav
 from scipy.fftpack import fft
 import numpy as np
