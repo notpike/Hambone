@@ -6,6 +6,7 @@
 
 from playsound import playsound
 from utils.tx import *
+import time
 
 class Audio:
 
@@ -16,7 +17,7 @@ class Audio:
 
     def playWav(self, file):
         self.tx.txOn
-        print("PIN ON")
-        sleep(10)
+        time.print("PIN ON")
+        (10)
         #playsound(file)
         #self.tx.txOff
