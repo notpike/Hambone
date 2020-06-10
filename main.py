@@ -26,4 +26,7 @@ def start():
     #rx.killAudio()
 
 if __name__ == "__main__":
-    start()
+    #start()
+    pin = 2
+    if(pin):
+        mc.select(pin)
