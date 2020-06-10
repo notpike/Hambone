@@ -1,6 +1,6 @@
-from dtmf import *
-from rx import *
-from tx import *
+from utils.dtmf import *
+from utils.rx import *
+from utils.tx import *
 
 dtmf = DTMF()
 rx = RX()
@@ -16,7 +16,7 @@ if __name__ == "__main__":
         
         code = dtmf.dtmfDecode()
         if(code == "9"):
-            tx.playWav("StarWars60.wav")
+            tx.playWav("wav/StarWars60.wav")
         
     rx.killAudio()
     
