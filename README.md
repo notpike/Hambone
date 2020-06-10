@@ -35,7 +35,7 @@ python main.py
 +---------------------+
 ```
 
-## RPi SCHEMATIC ==</b>                        
+## RPi SCHEMATIC                       
 For this radio’s PTT to be activated Mic needs a 2.2K ohm resistance to ground.  Voice is also being carried over the same line while this resistance is applied so to create this a parallel circuit is needed. This took some creativity to make work because the RPi audio ground and RPi ground are on the same circuit and because I was using a NPN I had to fudge the RPi’s audio in to keep it from shorting. IE, I flipped the RPi’s audio wires so the RPi’s audio line is going into the Yaesu’s ground and vise versa. Below is schematic for this circuit.    
 
 ```
