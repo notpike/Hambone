@@ -16,5 +16,6 @@ class Audio:
 
     def playWav(self, file):
         self.tx.txOn
-        playsound(file)
-        self.tx.txOff
+        print("PIN ON")
+        #playsound(file)
+        #self.tx.txOff
