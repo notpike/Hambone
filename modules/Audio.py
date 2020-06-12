@@ -6,6 +6,7 @@
 
 import os
 import time
+import pathlib
 
 ## Move back to root directory
 import sys
@@ -19,6 +20,8 @@ class Audio:
         return
 
     def playWav(self, file):
-        self.tx.txOn()
-        os.system("aplay " + file)
-        self.tx.txOff()
+        print(pathlib.Path().absolute())
+
+        #self.tx.txOn()
+        #os.system("aplay " +  file)
+        #self.tx.txOff()
