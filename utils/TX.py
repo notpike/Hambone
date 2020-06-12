@@ -10,7 +10,7 @@ class TX:
     
     def __init__(self, gpio=17):
         self.GPIO = gpio
-        if(os.path.isdir("/sys/class/gpio/gpio$GPIO") == False):
+        if(os.path.isdir("/sys/class/gpio/gpio" + str(self.GPIO)) == False):
             os.system("echo " + str(self.GPIO) + " > /sys/class/gpio/export")
             os.system("echo \"out\" >  /sys/class/gpio/gpio$GPIO/direction")
 
