@@ -10,23 +10,33 @@ from utils.TX import *
 from utils.ModuleController import *
 
 dtmf = DTMF()
-#rx   = RX()
-mc   = MasterControl()
+rx   = RX()
+mc   =  ModuleController()
 
 def start():
+    lastNumber = ""
+    pin = ""
+
     ## MAIN LOOP
     while(True):
-        #rx.recordAudio()
+        rx.recordAudio()                         # Record Audio
+        number = dtmf.dtmfDecode()               # Sample Audio find DTMF Number
         
-        pin = dtmf.dtmfDecode()
-        print(pin)
-        # if(pin):
-        #     mc.select(pin)
+        if(str(number) != lastNumber):           # Debounce 
+            pin += str(number)                   # Concat Number to PIN
+
+            if(mc.select(pin) or len(pin) > 6): # If PIN is valid, or larger then 6, clear pin
+                pin = ""
+
+        else:
+            continue
         
-    #rx.killAudio()
+        lastNumber = str(number) 
+
+    rx.killAudio()                                # Stop Audio Recording
 
 if __name__ == "__main__":
-    #start()
-    pin = 2
-    if(pin):
-        mc.select(pin)
+    start()
+    # pin = 2
+    # if(pin):
+    #     mc.select(pin)
