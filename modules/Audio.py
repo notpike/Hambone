@@ -10,7 +10,7 @@ import time
 
 class Audio:
 
-    tx   = TX()
+    tx = TX()
 
     def __init__(self):
         return
