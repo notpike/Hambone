@@ -13,14 +13,13 @@ from utils.TX import *
 
 class Audio:
 
-    def __init__(self):
+    def __init__(self, gpio=17):
+        self.tx = TX(gpio)
         return
 
     def playWav(self, file):
-        tx = TX()
+        self.tx.txOn()
 
-        tx.txOn
         time.sleep(5)
-        #playsound(file)
         
-        tx.txOff
+        self.tx.txOff()
