@@ -5,7 +5,7 @@
 ###################################################
 
 from playsound import playsound
-from utils.tx import *
+from utils.TX import *
 import time
 
 class Audio:
@@ -18,6 +18,6 @@ class Audio:
     def playWav(self, file):
         self.tx.txOn
         print("PIN ON")
-        time.sleep(10)
+        time.sleep(5)
         #playsound(file)
-        #self.tx.txOff
+        self.tx.txOff

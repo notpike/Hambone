@@ -4,10 +4,10 @@
 # Function: main.                                 #
 ###################################################
 
-from utils.dtmf import *
-from utils.rx import *
-from utils.tx import *
-from modules.masterControl import *
+from utils.DTMF import *
+from utils.RX import *
+from utils.TX import *
+from utils.ModuleController import *
 
 dtmf = DTMF()
 #rx   = RX()
@@ -16,14 +16,13 @@ mc   = MasterControl()
 def start():
     ## MAIN LOOP
     while(True):
-        #rx.recordAudio()
+        rx.recordAudio()
         
-        #pin = dtmf.dtmfDecode()
-        pin = 2
+        pin = dtmf.dtmfDecode()
         if(pin):
             mc.select(pin)
         
-    #rx.killAudio()
+    rx.killAudio()
 
 if __name__ == "__main__":
     #start()

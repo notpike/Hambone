@@ -1,5 +1,5 @@
 ###################################################
-# FILE: masterControl.py                          #
+# FILE: ModuleController.py                       #
 # AUTHOR: NotPike                                 #
 # Function: Helper function for module selection. #
 #           PIN comes in, function is ran if it   #
@@ -7,7 +7,7 @@
 ###################################################
 
 ### IMPORT MODULES ###
-from modules.audio import *
+from modules.Audio import *
 
 audio = Audio()
 
@@ -17,9 +17,10 @@ class MasterControl:
         return
 
     def select(self, pin):
-        switcher={
-            1 : print("Test PIN"),                      #Test
-            2 : audio.playWav("../wav/StarWars60.wav")  #Audio File
+        if(pin == 1):
+            print("Test PIN"),                      #Test
+        else if(pin == 2):
+            audio.playWav("../wav/StarWars60.wav")  #Audio File
+        else:
+            #do nothing
 
-        }
-        switcher.get(pin,lambda : print('Invalid PIN')) #Run module
