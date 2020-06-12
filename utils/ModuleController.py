@@ -22,5 +22,4 @@ class MasterControl:
         elif(pin == 2):
             audio.playWav("../wav/StarWars60.wav")  #Audio File
         else:
-            #do nothing
-
+            return
