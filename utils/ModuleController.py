@@ -6,6 +6,10 @@
 #           matches something in select().        #
 ###################################################
 
+## Move back to root directory
+import sys
+sys.path.append("..")
+
 ### IMPORT MODULES ###
 from modules.Audio import *
 
@@ -20,6 +24,6 @@ class MasterControl:
         if(pin == 1):
             print("Test PIN"),                      #Test
         elif(pin == 2):
-            audio.playWav("/wav/StarWars60.wav")  #Audio File
+            audio.playWav("/wav/StarWars3.wav")  #Audio File
         else:
             return

@@ -15,7 +15,6 @@ class TX:
             os.system("echo " + str(self.GPIO) + " > /sys/class/gpio/export")
             os.system("echo \"out\" >  /sys/class/gpio/gpio" + str(self.GPIO) + "/direction")
 
-
     def txOn(self):
         print(">>> TX ON")
         os.system("echo \"1\" > /sys/class/gpio/gpio" + str(self.GPIO) + "/value")

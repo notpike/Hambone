@@ -20,7 +20,6 @@ class Audio:
         return
 
     def playWav(self, file):
-
         self.tx.txOn()
         os.system("aplay " + str(pathlib.Path().absolute()) + file)
         self.tx.txOff()
