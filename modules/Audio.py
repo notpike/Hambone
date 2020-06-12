@@ -4,7 +4,7 @@
 # Function: Audio out class                       #
 ###################################################
 
-from playsound import playsound
+#from playsound import playsound
 from utils.TX import *
 import time
 
