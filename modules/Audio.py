@@ -10,9 +10,8 @@ import time
 
 class Audio:
 
-    tx = TX()
-
     def __init__(self):
+        self.tx = TX()
         return
 
     def playWav(self, file):
