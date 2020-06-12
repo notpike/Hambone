@@ -16,13 +16,14 @@ mc   = MasterControl()
 def start():
     ## MAIN LOOP
     while(True):
-        rx.recordAudio()
+        #rx.recordAudio()
         
         pin = dtmf.dtmfDecode()
-        if(pin):
-            mc.select(pin)
+        print(pin)
+        # if(pin):
+        #     mc.select(pin)
         
-    rx.killAudio()
+    #rx.killAudio()
 
 if __name__ == "__main__":
     #start()

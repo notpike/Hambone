@@ -4,9 +4,12 @@
 # Function: Audio out class                       #
 ###################################################
 
-#from playsound import playsound
-from utils.TX import *
 import time
+
+## Move back to root directory
+import sys
+sys.path.append("..")
+from utils.TX import *
 
 class Audio:
 
