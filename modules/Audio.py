@@ -4,6 +4,7 @@
 # Function: Audio out class                       #
 ###################################################
 
+import os
 import time
 
 ## Move back to root directory
@@ -19,7 +20,5 @@ class Audio:
 
     def playWav(self, file):
         self.tx.txOn()
-
-        time.sleep(5)
-        
+        os.system("aplay " + file)
         self.tx.txOff()
