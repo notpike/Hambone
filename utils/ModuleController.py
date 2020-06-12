@@ -20,6 +20,6 @@ class MasterControl:
         if(pin == 1):
             print("Test PIN"),                      #Test
         elif(pin == 2):
-            audio.playWav("../wav/StarWars60.wav")  #Audio File
+            audio.playWav("/wav/StarWars60.wav")  #Audio File
         else:
             return
