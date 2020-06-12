@@ -17,9 +17,9 @@ class TX:
 
 
     def txOn(self):
-        print(self.GPIO)
+        print(">>> TX ON")
         os.system("echo \"1\" > /sys/class/gpio/gpio" + str(self.GPIO) + "/value")
 
     def txOff(self):
-        print(self.GPIO)
+        print(">>> TX OFF")
         os.system("echo \"0\" > /sys/class/gpio/gpio" + str(self.GPIO) + "/value")

@@ -14,12 +14,13 @@ from utils.TX import *
 class Audio:
 
     def __init__(self):
-        self.tx = TX()
         return
 
     def playWav(self, file):
-        self.tx.txOn
-        print("PIN ON")
+        tx = TX()
+
+        tx.txOn
         time.sleep(5)
         #playsound(file)
-        self.tx.txOff
+        
+        tx.txOff
