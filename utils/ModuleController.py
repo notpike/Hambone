@@ -19,7 +19,7 @@ class MasterControl:
     def select(self, pin):
         if(pin == 1):
             print("Test PIN"),                      #Test
-        else if(pin == 2):
+        elif(pin == 2):
             audio.playWav("../wav/StarWars60.wav")  #Audio File
         else:
             #do nothing
