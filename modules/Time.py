@@ -5,6 +5,7 @@
 ###################################################
 
 from datetime import *
+import time
 
 ## Move back to root directory
 import sys
@@ -38,9 +39,9 @@ class Time:
 
     def readTime(self):
 
-        hour = datetime.now().strftime("%-I")
-        min = datetime.now().strftime("%m")
-        pmAm = datetime.now().strftime("%p")
+        hour = time.strftime("%-I")
+        min = time.strftime("%m")
+        pmAm = time.strftime("%p")
 
         timeNow = "The time is " + hour + " " + min + " " + pmAm 
 
