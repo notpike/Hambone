@@ -12,10 +12,12 @@ sys.path.append("..")
 
 ### IMPORT MODULES ###
 from modules.Audio import *
-
-audio = Audio()
+from modules.Time import *
 
 class ModuleController:
+
+    audio = Audio()
+    time = Time()
 
     def __init__(self):
         return
@@ -28,6 +30,9 @@ class ModuleController:
         elif(pin == "321"):
             audio.playWav("/wav/StarWars3.wav")  #Audio File
             return True
+
+        elif(pin = "666"):
+
 
         else:
             return False                         # Invalid PIN return False        

@@ -36,7 +36,6 @@ def start():
     rx.killAudio()                                # Stop Audio Recording
 
 if __name__ == "__main__":
-    start()
-    # pin = 2
-    # if(pin):
-    #     mc.select(pin)
+    #start()
+    pin = "666"
+    mc.select(pin)
