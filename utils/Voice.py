@@ -10,7 +10,7 @@ from gtts import gTTS
 class Voice:
 
     def __init__(self,
-                 language = 'en',
+                 language = 'en-gb',
                  slowAudioSpeed = False,):
 
         self.language       = language

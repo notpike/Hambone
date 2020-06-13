@@ -16,10 +16,10 @@ from modules.Time import *
 
 class ModuleController:
 
-    audio = Audio()
-    time = Time()
-
-    def __init__(self):
+    def __init__(self, callsign):
+        self.callsign = callsign
+        self.audio = Audio(self.callsign)
+        self.time = Time(self.callsign)
         return
 
     def select(self, pin):
