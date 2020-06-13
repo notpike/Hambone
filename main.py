@@ -9,9 +9,12 @@ from utils.RX import *
 from utils.TX import *
 from utils.ModuleController import *
 
+callsign = "WU7ANG"
+
+
 dtmf = DTMF()
 rx   = RX()
-mc   =  ModuleController()
+mc   =  ModuleController(callsign)
 
 def start():
     lastNumber = ""

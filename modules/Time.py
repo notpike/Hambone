@@ -16,12 +16,10 @@ from modules.Callsign import *
 
 class Time:
 
-    tx = TX()
-    voice = Voice()
-    call = Callsign("wu7ang")
-
-    def __init__(self):
-        return
+    def __init__(self, call, gpio=17):
+        self.tx = TX(gpio)
+        self.voice = Voice()
+        self.call = Callsign(call)
     
     def readDate(self):
 

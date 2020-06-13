@@ -1,3 +1,9 @@
+###################################################
+# FILE: Callsign.py                               #
+# AUTHOR: NotPike                                 #
+# Function: Helper for cw bin and Voice           #
+###################################################
+
 import sys
 import os
 sys.path.append("..")
@@ -7,10 +13,8 @@ from utils.Voice import *
 
 class Callsign:
 
-    tx = TX()
-    voice = Voice()
-
     def __init__(self, call):
+        self.voice = Voice()
         self.call = call
 
     def readCallsign(self):
@@ -18,13 +22,9 @@ class Callsign:
         call = " ".join(self.call) 
 
         self.voice.buildAudio(call)
-        #self.tx.txOn()
         self.voice.playAudio()
-        #self.tx.txOff()
 
     def cw(self):
-        #self.tx.txOn()
         os.system("echo " + self.call + " | cw -w 25 -t 1200")
-        #self.tx.txOff()
 
 
