@@ -2,6 +2,7 @@
 # FILE: Weather.py                                #
 # AUTHOR: NotPike                                 #
 # Function: OWM API caller, voice to read weather #
+#           https://openweathermap.org/           #
 ###################################################
 
 import pyowm
@@ -30,8 +31,8 @@ class Weather:
         
         temp = math.floor((w.get_temperature()['temp'] - 275.15) * (9/5) + 32)
         rh = w.get_humidity()
-        windSpeed = w.get_wind()['speed']
-        windDirection = w.get_wind()['deg']
+        windSpeed = math.floor(w.get_wind()['speed'] * 2.237)
+        windDirection = w.get_wind()['deg'] 
 
         report = "Air temperature, " + str(temp) + ". " + "Relative Humidity, " + str(rh) + ". " + "Wind Speed, " + str(windSpeed) + " Miles Per Hour, at " + str(windDirection) + " degrees."
     
