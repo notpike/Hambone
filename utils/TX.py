@@ -13,7 +13,8 @@ class TX:
         if(os.path.isdir("/sys/class/gpio/gpio" + str(self.GPIO)) == False):
             print(">>> INIT GPIO " + str(self.GPIO) + ": OUT")
             os.system("echo " + str(self.GPIO) + " > /sys/class/gpio/export")
-            os.system("echo \"out\" >  /sys/class/gpio/gpio" + str(self.GPIO) + "/direction")
+
+        os.system("echo \"out\" >  /sys/class/gpio/gpio" + str(self.GPIO) + "/direction")
 
     def txOn(self):
         print(">>> TX ON")

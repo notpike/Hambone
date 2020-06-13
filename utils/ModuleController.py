@@ -33,6 +33,7 @@ class ModuleController:
 
         elif(pin == "666"):
             self.time.readTimeNow()
+            return True
 
         else:
             return False                         # Invalid PIN return False        
