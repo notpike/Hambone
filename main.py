@@ -46,5 +46,15 @@ def start():
 
 if __name__ == "__main__":
     #start()
+
+    ## Weather
     pin = "777"
+    mc.select(pin)
+
+    ## Date
+    pin = "666"
+    mc.select(pin)
+
+    ## Time
+    pin = "999"
     mc.select(pin)

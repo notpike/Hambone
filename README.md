@@ -9,6 +9,11 @@ $ sudo apt install python3-numpy mpg123 cw
 $ pip3 install pyaudio scipy gTTS pyowm==2.10.0
 ```
 
+## RPi Enable NTP Time
+```
+$ sudo timedatectl set-ntp True
+```
+
 ## ENV Class
 Envirement variables shuch as callsign need to be present before you start the program. Copy env-example.py to env.py and fill in the required information. 
 
