@@ -5,7 +5,7 @@ Not to throw away a mostly working product I re-purposed my failed experiment so
 
 ## Required Software
 ```
-$ sudo apt install python3-numpy mpg123
+$ sudo apt install python3-numpy mpg123 cw
 $ pip3 install numpy playsound pyaudio scipy gTTS
 ```
 

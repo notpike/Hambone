@@ -5,7 +5,7 @@
 ###################################################
 
 from datetime import *
-
+from Callsign import *
 
 import sys
 sys.path.append("..")
@@ -18,6 +18,7 @@ class Time:
 
     tx = TX()
     voice = Voice()
+    call = Callsign("wu7ang")
 
     def __init__(self):
         return
@@ -32,6 +33,7 @@ class Time:
 
         self.voice.buildAudio(todaysDate)
         self.tx.txOn()
+        self.call.cw()
         self.voice.playAudio()
         self.tx.txOff()
 
@@ -45,6 +47,7 @@ class Time:
 
         self.voice.buildAudio(timeNow)
         self.tx.txOn()
+        self.call.cw()
         self.voice.playAudio()
         self.tx.txOff()
 
