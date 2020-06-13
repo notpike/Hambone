@@ -24,7 +24,7 @@ class Callsign:
 
     def cw(self):
         #self.tx.txOn()
-        os.system("cw " + self.call)
+        os.system("echo " + self.call + " | cw -w 25 -t 1200")
         #self.tx.txOff()
 
 
