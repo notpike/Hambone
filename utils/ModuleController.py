@@ -13,14 +13,17 @@ sys.path.append("..")
 ### IMPORT MODULES ###
 from modules.Audio import *
 from modules.Time import *
+from modules.Weather import *
 
 class ModuleController:
 
     def __init__(self, callsign):
         self.callsign = callsign
+
+        ### DECLARE MODULES ###
         self.audio = Audio(self.callsign)
         self.time = Time(self.callsign)
-        return
+        self.weather = Weather(self.callsign)
 
     def select(self, pin):
         if(pin == "123"):
@@ -33,7 +36,14 @@ class ModuleController:
 
         elif(pin == "666"):
             self.time.readDate()
+            return True
+
+        elif(pin == "999"):
             self.time.readTime()
+            return True
+
+        elif(pin == "777"):
+            self.weather.getWeather()
             return True
 
         else:

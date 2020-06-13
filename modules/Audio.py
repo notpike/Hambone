@@ -20,7 +20,6 @@ class Audio:
     def __init__(self, call, gpio=17):
         self.call = Callsign(call)
         self.tx = TX(gpio)
-        return
 
     def playWav(self, file):
         self.tx.txOn()
