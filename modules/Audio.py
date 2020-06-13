@@ -11,8 +11,9 @@ import pathlib
 ## Move back to root directory
 import sys
 sys.path.append("..")
+
 from utils.TX import *
-from modules.Callsign import *
+from utils.Callsign import *
 
 
 class Audio:
@@ -23,6 +24,12 @@ class Audio:
 
     def playWav(self, file):
         self.tx.txOn()
-        self.call.cw()
         os.system("aplay " + str(pathlib.Path().absolute()) + file)
+        self.call.cw()
+        self.tx.txOff()
+    
+    def playMp3(self, file):
+        self.tx.txOn()
+        os.system("mpg123 " + str(pathlib.Path().absolute()) + file)
+        self.call.cw()
         self.tx.txOff()

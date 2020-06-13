@@ -1,7 +1,7 @@
 ###################################################
 # FILE: Weather.py                                #
 # AUTHOR: NotPike                                 #
-# Function: OWM class                             #
+# Function: OWM API caller, voice to read weather #
 ###################################################
 
 import pyowm
@@ -10,23 +10,22 @@ import math
 ## Move back to root directory
 import sys
 sys.path.append("..")
+
 from utils.TX import *
 from utils.Voice import *
-from modules.Callsign import *
+from utils.Callsign import *
 
 class Weather:
 
-    apiKey = "e803f0816ca8f7ceeafcab6d1877d0e2"
-
-    def __init__(self, call, gpio=17):
+    def __init__(self, call, api, gpio=17):
         self.call = Callsign(call)
         self.tx = TX(gpio)
         self.voice = Voice()
-        #self.owm = pyowm.OWM(self.apiKey)
+        self.apiKey = api
 
-    def getWeather(self):
+    def readWeather(self, location='reno,usa'):
         owm = pyowm.OWM(self.apiKey)
-        observation = owm.weather_at_place('reno,usa')
+        observation = owm.weather_at_place(location)
         w = observation.get_weather()
         
         temp = math.floor((w.get_temperature()['temp'] - 275.15) * (9/5) + 32)
@@ -34,10 +33,10 @@ class Weather:
         windSpeed = w.get_wind()['speed']
         windDirection = w.get_wind()['deg']
 
-        report = "Air temperature, " + str(temp) + ". " + "Relative Humidity, " + str(rh) + ". " + "Wind Speed, " + str(windSpeed) + " Miles Per Hour at, " + str(windDirection) + " degrees."
+        report = "Air temperature, " + str(temp) + ". " + "Relative Humidity, " + str(rh) + ". " + "Wind Speed, " + str(windSpeed) + " Miles Per Hour, at " + str(windDirection) + " degrees."
     
         self.voice.buildAudio(report)
         self.tx.txOn()
-        self.call.cw()
         self.voice.playAudio()
+        self.call.cw()
         self.tx.txOff()

@@ -6,12 +6,13 @@
 
 from datetime import *
 
+## Move back to root directory
 import sys
 sys.path.append("..")
 
 from utils.TX import *
 from utils.Voice import *
-from modules.Callsign import *
+from utils.Callsign import *
 
 
 class Time:
@@ -31,8 +32,8 @@ class Time:
 
         self.voice.buildAudio(todaysDate)
         self.tx.txOn()
-        self.call.cw()
         self.voice.playAudio()
+        self.call.cw()
         self.tx.txOff()
 
     def readTime(self):
@@ -45,8 +46,8 @@ class Time:
 
         self.voice.buildAudio(timeNow)
         self.tx.txOn()
-        self.call.cw()
         self.voice.playAudio()
+        self.call.cw()
         self.tx.txOff()
 
 

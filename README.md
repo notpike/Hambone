@@ -6,8 +6,11 @@ Not to throw away a mostly working product I re-purposed my failed experiment so
 ## Required Software
 ```
 $ sudo apt install python3-numpy mpg123 cw
-$ pip3 install numpy playsound pyaudio scipy gTTS  pyowm==2.10.0
+$ pip3 install pyaudio scipy gTTS pyowm==2.10.0
 ```
+
+## ENV Class
+Envirement variables shuch as callsign need to be present before you start the program. Copy env-example.py to env.py and fill in the required information. 
 
 ## Run Program 
 ```

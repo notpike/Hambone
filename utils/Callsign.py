@@ -25,6 +25,6 @@ class Callsign:
         self.voice.playAudio()
 
     def cw(self):
-        os.system("echo " + self.call + " | cw -w 25 -t 1200")
+        os.system("echo " + self.call + " | cw -w 20 -t 1200")
 
 

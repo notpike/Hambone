@@ -6,24 +6,21 @@
 #           matches something in select().        #
 ###################################################
 
-## Move back to root directory
-import sys
-sys.path.append("..")
-
 ### IMPORT MODULES ###
 from modules.Audio import *
 from modules.Time import *
 from modules.Weather import *
 
+
 class ModuleController:
 
-    def __init__(self, callsign):
-        self.callsign = callsign
+    def __init__(self, env):
+        self.env = env
 
         ### DECLARE MODULES ###
-        self.audio = Audio(self.callsign)
-        self.time = Time(self.callsign)
-        self.weather = Weather(self.callsign)
+        self.audio = Audio(self.env.CALLSIGN)
+        self.time = Time(self.env.CALLSIGN)
+        self.weather = Weather(self.env.CALLSIGN, self.env.OWM_API)
 
     def select(self, pin):
         if(pin == "123"):
@@ -43,7 +40,7 @@ class ModuleController:
             return True
 
         elif(pin == "777"):
-            self.weather.getWeather()
+            self.weather.readWeather(self.env.OWM_LOCATION)
             return True
 
         else:
