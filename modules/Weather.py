@@ -29,12 +29,12 @@ class Weather:
         observation = owm.weather_at_place(location)
         w = observation.get_weather()
         
-        temp = math.floor((w.get_temperature()['temp'] - 275.15) * (9/5) + 32)
+        temp = round(((w.get_temperature()['temp'] - 275.15) * (9/5) + 32), 1) # K -> F
         rh = w.get_humidity()
-        windSpeed = math.floor(w.get_wind()['speed'] * 2.237)
+        windSpeed = round((w.get_wind()['speed'] * 2.237), 1)                  # MPS -> MPH
         windDirection = w.get_wind()['deg'] 
 
-        report = "Air temperature, " + str(temp) + ". " + "Relative Humidity, " + str(rh) + ". " + "Wind Speed, " + str(windSpeed) + " Miles Per Hour, at " + str(windDirection) + " degrees."
+        report = "Air temperature, " + str(temp) + ". " + "Relative Humidity, " + str(rh) + ". " + "Wind Speed, " + str(windSpeed) + " Miles Per Hour. At " + str(windDirection) + " degrees."
     
         self.voice.buildAudio(report)
         self.tx.txOn()
