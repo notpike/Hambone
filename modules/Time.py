@@ -5,13 +5,13 @@
 ###################################################
 
 from datetime import *
-from Callsign import *
 
 import sys
 sys.path.append("..")
 
 from utils.TX import *
 from utils.Voice import *
+from utils.Callsign import *
 
 
 class Time:
