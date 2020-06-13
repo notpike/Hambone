@@ -11,7 +11,7 @@ sys.path.append("..")
 
 from utils.TX import *
 from utils.Voice import *
-from utils.Callsign import *
+from modules.Callsign import *
 
 
 class Time:
