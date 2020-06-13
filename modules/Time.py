@@ -40,7 +40,7 @@ class Time:
     def readTime(self):
 
         hour = time.strftime("%-I")
-        min = time.strftime("%m")
+        min = time.strftime("%M")
         pmAm = time.strftime("%p")
 
         timeNow = "The time is " + hour + " " + min + " " + pmAm 
