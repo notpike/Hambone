@@ -34,7 +34,7 @@ class Weather:
         windSpeed = w.get_wind()['speed']
         windDirection = w.get_wind()['deg']
 
-        report = "Air temperature, " + temp + ". " + "Relative Humidity, " + rh + ". " + "Wind Speed, " + windSpeed + " Miles Per Hour at, " + windDirection + " degrees."
+        report = "Air temperature, " + str(temp) + ". " + "Relative Humidity, " + str(rh) + ". " + "Wind Speed, " + str(windSpeed) + " Miles Per Hour at, " + str(windDirection) + " degrees."
     
         self.voice.buildAudio(report)
         self.tx.txOn()
