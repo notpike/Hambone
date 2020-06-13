@@ -28,11 +28,11 @@ class ModuleController:
             return True
 
         elif(pin == "321"):
-            audio.playWav("/wav/StarWars3.wav")  #Audio File
+            self.audio.playWav("/wav/StarWars3.wav")  #Audio File
             return True
 
-        elif(pin = "666"):
-
+        elif(pin == "666"):
+            self.time.readTimeNow()
 
         else:
             return False                         # Invalid PIN return False        
