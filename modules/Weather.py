@@ -16,7 +16,7 @@ from modules.Callsign import *
 
 class Weather:
 
-    apiKey = "bc44b73b0c596cb6f1eb5a053ef86c02"
+    apiKey = "e803f0816ca8f7ceeafcab6d1877d0e2"
 
     def __init__(self, call, gpio=17):
         self.call = Callsign(call)
@@ -24,8 +24,8 @@ class Weather:
         self.voice = Voice()
         self.owm = pyowm.OWM(self.apiKey)
 
-    def getWeather(self):
-        observation = self.owm.weather_at_place('London,uk')
+    def getWeather(self, zip=89512):
+        observation = self.owm.weather_at_place('reno,usa')
         w = observation.get_weather()
         
         temp = math.floor((w.get_temperature()['temp'] - 275.15) * (9/5) + 32)
