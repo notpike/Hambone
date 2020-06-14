@@ -31,6 +31,7 @@ class Voice:
 
             ## If size is 0, Voice is offline
             if(Path('/tmp/gtts.mp3').stat().st_size > 0):
+                logging.info("Audio Built")
                 self.online = True
             else:
                 self.online = False
@@ -42,6 +43,8 @@ class Voice:
 
     def playAudio(self):
         if(self.online):
+            logging.info("Audio Played")
             os.system("mpg123 /tmp/gtts.mp3")
         else:
+            logging.info("Offline Audio Played")
             os.system("echo " + self.msg + " | espeak-ng -g 20 2> /dev/null")

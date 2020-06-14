@@ -15,11 +15,15 @@ $ sudo timedatectl set-ntp True
 ```
 
 ## ENV Class
-Envirement variables shuch as callsign need to be present before you start the program. Copy env-example.py to env.py and fill in the required information. 
+Envirement variables shuch as callsign need to be present before you start the program. Copy env_example.py to env.py and fill in the required information. 
+```
+$ cp env_example.py env.py
+$ nano env.py
+```
 
 ## Run Program 
 ```
-python main.py
+sudo python main.py
 ```
 
 ## YAESU VX-7R 2.5MM JACK

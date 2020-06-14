@@ -16,7 +16,7 @@ except ImportError as error:
     from env_example import *
     env = ENV()
     logging.basicConfig(filename=env.LOGGING_FILE, level=env.LOGGING_LEVEL, format='%(asctime)s %(levelname)s: %(message)s', datefmt='%m/%d/%Y %H:%M:%S')
-    logging.critical("Missing env.py file. Please copy the env-example.py to env.py and update variables.")
+    logging.critical("Missing env.py file. Please copy the env_example.py to env.py and update variables.")
     exit()
 
 ## Application Classes

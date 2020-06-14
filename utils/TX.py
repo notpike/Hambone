@@ -39,7 +39,6 @@ class TX:
 
     def txOn(self):
         if(self.env.DEV == False and self.env.TX):
-            print(">>> TX ON")
             logging.info("TX ON")
             stdr = os.system("echo \"1\" > /sys/class/gpio/gpio" + str(self.GPIO) + "/value")
             if(stdr > 0):
@@ -51,8 +50,7 @@ class TX:
 
     def txOff(self):
         if(self.env.DEV == False and self.env.TX):
-            print(">>> TX OFF")
-            logging.info("TX ON")
+            logging.info("TX OFF")
             stdr = os.system("echo \"0\" > /sys/class/gpio/gpio" + str(self.GPIO) + "/value")
             if(stdr > 0):
                 logging.critical("FAILED TO STOP TX")
