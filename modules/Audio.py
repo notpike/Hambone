@@ -7,6 +7,7 @@
 import os
 import time
 import pathlib
+import logging
 
 ## Move back to root directory
 import sys
@@ -23,12 +24,18 @@ class Audio:
         self.tx = TX(gpio)
 
     def playWav(self, file):
+        print(">>> Playing Wav: " + file)
+        logging.info("Playing Wav: " + file)
+
         self.tx.txOn()
         os.system("aplay " + str(pathlib.Path().absolute()) + file)
         self.call.cw()
         self.tx.txOff()
     
     def playMp3(self, file):
+        print(">>> Playing Mp3: " + file)
+        logging.info("Playing Mp3: " + file)
+
         self.tx.txOn()
         os.system("mpg123 " + str(pathlib.Path().absolute()) + file)
         self.call.cw()

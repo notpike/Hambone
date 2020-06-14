@@ -7,6 +7,7 @@
 
 import pyowm
 import math
+import logging
 
 ## Move back to root directory
 import sys
@@ -18,12 +19,12 @@ from utils.Callsign import *
 
 class Weather:
 
-    def __init__(self, call, api, gpio=17):
+    def __init__(self, call, api, gpio=17, online=True):
         self.call = Callsign(call)
         self.tx = TX(gpio)
         self.voice = Voice()
         self.apiKey = api
-        self.online = True
+        self.online = online
 
     def readWeather(self, location='reno,usa'):
         try:
@@ -32,10 +33,10 @@ class Weather:
             w = observation.get_weather()
             self.online = True
         except:
-            print(">>> Weather Offline")
+            logging.warning("Weather Offline")
             self.online = False
 
-            self.voice.buildAudio("Sorry. Weather is Offline")
+            self.voice.buildAudio("Sorry. The weather is Offline")
             self.tx.txOn()
             self.voice.playAudio()
             self.call.cw()
@@ -48,7 +49,8 @@ class Weather:
             windDirection = w.get_wind()['deg'] 
 
             report = "Air temperature, " + str(temp) + ". " + "Relative Humidity, " + str(rh) + ". " + "Wind Speed, " + str(windSpeed) + " Miles Per Hour. At " + str(windDirection) + " degrees."
-        
+            logging.info("Weather: " + report)
+
             self.voice.buildAudio(report)
             self.tx.txOn()
             self.voice.playAudio()

@@ -9,6 +9,7 @@
 from scipy.io import wavfile as wav
 import pyaudio
 import wave
+import logging
 
 
 class RX:
@@ -46,12 +47,17 @@ class RX:
         stream.close()
 
         # storing voice
-        waveFile = wave.open(self.WAVE_OUTPUT_FILENAME, 'wb')
-        waveFile.setnchannels(self.CHANNELS)
-        waveFile.setsampwidth(self.audio.get_sample_size(self.FORMAT))
-        waveFile.setframerate(self.RATE)
-        waveFile.writeframes(b''.join(frames))
-        waveFile.close()
+        try:
+            waveFile = wave.open(self.WAVE_OUTPUT_FILENAME, 'wb')
+            waveFile.setnchannels(self.CHANNELS)
+            waveFile.setsampwidth(self.audio.get_sample_size(self.FORMAT))
+            waveFile.setframerate(self.RATE)
+            waveFile.writeframes(b''.join(frames))
+            waveFile.close()
+        except:
+            print(">>> RX WAV SAVE FUNCTION FAILED!")
+            logging.warning("RX WAV SAVE FUNCTION FAILED!")
+            exit()
 
     def killAudio(self):
         self.audio.terminate()

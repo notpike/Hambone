@@ -6,6 +6,7 @@
 
 from datetime import *
 import time
+import logging
 
 ## Move back to root directory
 import sys
@@ -24,12 +25,14 @@ class Time:
         self.call = Callsign(call)
     
     def readDate(self):
-
         day = date.today().strftime("%A")
         month = date.today().strftime("%B")
         dayNumber = date.today().strftime("%-d")
 
         todaysDate = "Today is " + day + " " + month + " " + dayNumber 
+        logging.info("Date: " + todaysDate)
+
+
 
         self.voice.buildAudio(todaysDate)
         self.tx.txOn()
@@ -38,12 +41,12 @@ class Time:
         self.tx.txOff()
 
     def readTime(self):
-
         hour = time.strftime("%-I")
         min = time.strftime("%M")
         pmAm = time.strftime("%p")
 
         timeNow = "The time is " + hour + " " + min + " " + pmAm 
+        logging.info("Time: " + timeNow)
 
         self.voice.buildAudio(timeNow)
         self.tx.txOn()

@@ -4,32 +4,48 @@
 # Function: main()                                 #
 ###################################################
 
-## Envirement Variables
+## Logging
+import logging
+
+## Envirement Variables and log config
 try:
     from env import *
     env = ENV()
+    logging.basicConfig(filename=env.LOGGING_FILE, level=env.LOGGING_LEVEL, format='%(asctime)s %(levelname)s: %(message)s', datefmt='%m/%d/%Y %H:%M:%S')
 except ImportError as error:
-    print(">>> Missing env.py file. Copy env-example.py to env.py and update variables.")
+    from env_example import *
+    env = ENV()
+    logging.basicConfig(filename=env.LOGGING_FILE, level=env.LOGGING_LEVEL, format='%(asctime)s %(levelname)s: %(message)s', datefmt='%m/%d/%Y %H:%M:%S')
+    logging.critical("Missing env.py file. Please copy the env-example.py to env.py and update variables.")
     exit()
 
+## Application Classes
 from utils.DTMF import *
 from utils.RX import *
 from utils.TX import *
 from ModuleController import *
 
-mc   = ModuleController(env)
-dtmf = DTMF()
-rx   = RX()
+def init():
+    global mc 
+    global dtmf
+    global rx
+
+    mc = ModuleController(env)
+    dtmf = DTMF()
+    rx   = RX()
 
 
 def start():
+    logging.info('### Start ###')
+
     lastNumber = ""                      # Debounce
     pin = ""
     loop = 0                             # Timeout timer
     maxLoop = 15                         # Timeout limit
 
     ## MAIN LOOP
-    while(True):
+    run = True
+    while(run):
         if(loop >= maxLoop):             # If timedout, clear pin reset timer
             pin = ""
             loop = 0
@@ -42,11 +58,10 @@ def start():
                 pin += str(number)       # Concat Number to PIN
                 loop = 0                 # Reset timeout
 
-                print(">>> PIN: " + pin)
+                logging.info("PIN: " + pin)
 
-
-                # If PIN is valid, > 6, or "*#" is present, clear pin
-                if(mc.select(pin) or len(pin) > 6 or ("*#" in str(pin))): 
+                # If PIN is valid or > 6
+                if(mc.select(pin) or len(pin) > 6): 
                     pin = ""
 
         else:
@@ -56,6 +71,8 @@ def start():
         lastNumber = str(number) 
 
     rx.killAudio()                       # Stop Audio Recording
+    logging.info('### Stop ###')
 
 if __name__ == "__main__":
+    init()
     start()

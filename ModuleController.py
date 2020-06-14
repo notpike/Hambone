@@ -6,6 +6,8 @@
 #           matches something in select().        #
 ###################################################
 
+import logging
+
 ### IMPORT MODULES ###
 from modules.Audio import *
 from modules.Time import *
@@ -18,9 +20,9 @@ class ModuleController:
         self.env = env
 
         ### DECLARE MODULES ###
-        self.audio = Audio(self.env.CALLSIGN)
-        self.time = Time(self.env.CALLSIGN)
-        self.weather = Weather(self.env.CALLSIGN, self.env.OWM_API)
+        self.audio = Audio(self.env.CALLSIGN, self.env.GPIO)
+        self.time = Time(self.env.CALLSIGN, self.env.GPIO)
+        self.weather = Weather(self.env.CALLSIGN, self.env.OWM_API, self.env.GPIO)
 
     # Select function, PIN goes in, function is preformed
     # and returns True if sucessfull so the PIN cal be cleared
@@ -29,6 +31,7 @@ class ModuleController:
         # Test
         if(pin == "123"):
             print(">>> Test PIN")
+            logging.info("Test PIN")
             return True
 
         # May 4th be with you
@@ -51,5 +54,10 @@ class ModuleController:
             self.weather.readWeather(self.env.OWM_LOCATION)
             return True
 
+        # Clear pin with "*#"
+        elif("*#" in pin):
+            return True
+
+        # Invalid PIN
         else:
-            return False                         # Invalid PIN return False        
+            return False        

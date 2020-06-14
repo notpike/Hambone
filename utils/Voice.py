@@ -4,6 +4,7 @@
 # Function: gTTS class                            #
 ###################################################
 
+import logging
 import os
 from gtts import gTTS
 from pathlib import Path
@@ -33,10 +34,10 @@ class Voice:
                 self.online = True
             else:
                 self.online = False
-                print(">>> Voice Offline")             
+                logging.warning("Voice Offline")          
         except:
             self.online = False
-            print(">>> Voice Offline")
+            logging.warning("Voice Offline")
 
 
     def playAudio(self):
