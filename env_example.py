@@ -12,6 +12,8 @@ class ENV:
         self.CALLSIGN = ""
         self.GPIO = 17
         self.DEV = False
+        self.TX = True
+        self.RX = True
         self.LOGGING_LEVEL = logging.INFO
         self.LOGGING_FILE = 'log/event.log'
 

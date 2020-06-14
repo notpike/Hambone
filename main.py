@@ -75,4 +75,7 @@ def start():
 
 if __name__ == "__main__":
     init()
-    start()
+    #start()
+
+    pin = "3283"
+    mc.select(pin)

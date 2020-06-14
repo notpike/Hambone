@@ -11,6 +11,10 @@ from scipy.fftpack import fft
 import numpy as np
 import logging
 
+## Move back to root directory
+import sys
+sys.path.append("..")
+from env import *
 
 class DTMF:
 
@@ -24,6 +28,7 @@ class DTMF:
      
     def __init__(self, file="/tmp/file.wav"):
         self.WAVE_OUTPUT_FILENAME = file
+        self.env = ENV()
 
     def isNumberInArray(self, array, number):
         offset = 5
@@ -33,30 +38,32 @@ class DTMF:
         return False
 
     def dtmfDecode(self):
-        # reading voice
-        rate, data = wav.read(self.WAVE_OUTPUT_FILENAME)
-        # data is voice signal. its type is list(or numpy array)
+        if(self.env.RX):
+            # reading voice
+            rate, data = wav.read(self.WAVE_OUTPUT_FILENAME)
+            # data is voice signal. its type is list(or numpy array)
 
-        # Calculate fourier trasform of data
-        FourierTransformOfData = np.fft.fft(data, 20000)
+            # Calculate fourier trasform of data
+            FourierTransformOfData = np.fft.fft(data, 20000)
 
-        # Convert fourier transform complex number to integer numbers
-        for i in range(len(FourierTransformOfData)):
-            FourierTransformOfData[i] = int(np.absolute(FourierTransformOfData[i]))
+            # Convert fourier transform complex number to integer numbers
+            for i in range(len(FourierTransformOfData)):
+                FourierTransformOfData[i] = int(np.absolute(FourierTransformOfData[i]))
 
-        # Calculate lower bound for filtering fourier trasform numbers
-        LowerBound = 20 * np.average(FourierTransformOfData)
-        #print("Lower Bond: ", LowerBound)
+            # Calculate lower bound for filtering fourier trasform numbers
+            LowerBound = 20 * np.average(FourierTransformOfData)
+            #print("Lower Bond: ", LowerBound)
 
-        # Filter fourier transform data (only select frequencies that X(jw) is greater than LowerBound)
-        FilteredFrequencies = []
-        for i in range(len(FourierTransformOfData)):
-            if (FourierTransformOfData[i] > LowerBound):
-                FilteredFrequencies.append(i)
+            # Filter fourier transform data (only select frequencies that X(jw) is greater than LowerBound)
+            FilteredFrequencies = []
+            for i in range(len(FourierTransformOfData)):
+                if (FourierTransformOfData[i] > LowerBound):
+                    FilteredFrequencies.append(i)
 
-        # Detect and print pressed button
-        for char, frequency_pair in self.DTMF_TABLE.items():
-            if (self.isNumberInArray(FilteredFrequencies, frequency_pair[0]) and
-                self.isNumberInArray(FilteredFrequencies, frequency_pair[1])):
-                return char
-
+            # Detect and print pressed button
+            for char, frequency_pair in self.DTMF_TABLE.items():
+                if (self.isNumberInArray(FilteredFrequencies, frequency_pair[0]) and
+                    self.isNumberInArray(FilteredFrequencies, frequency_pair[1])):
+                    return char
+        else:
+            return "None"
