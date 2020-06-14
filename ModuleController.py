@@ -43,5 +43,9 @@ class ModuleController:
             self.weather.readWeather(self.env.OWM_LOCATION)
             return True
 
+        elif(pin == "ACAB"):
+            self.audio.playMp3("/wav/nwa.mp3")
+            return True
+
         else:
             return False                         # Invalid PIN return False        

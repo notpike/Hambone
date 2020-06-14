@@ -25,22 +25,30 @@ rx   = RX()
 def start():
     lastNumber = ""
     pin = ""
+    loop = 0     ## Timeout timer
+    maxLoop = 15 ## Timeout limit
 
     ## MAIN LOOP
     while(True):
+        if(loop >= maxLoop):
+            pin = ""
+            loop = 0
+
         rx.recordAudio()                        # Record Audio
         number = dtmf.dtmfDecode()              # Sample Audio find DTMF Number
         #print(str(number))
 
         if(str(number) != lastNumber):          # Debounce 
             if(str(number) != "None"):
-                pin += str(number)                  # Concat Number to PIN
-                print(pin)
+                pin += str(number)              # Concat Number to PIN
+                print(">>> PIN: " + pin)
+                loop = 0
 
                 if(mc.select(pin) or len(pin) > 6 or ("*#" in str(pin))): # If PIN is valid, or larger then 6, clear pin
                     pin = ""
 
         else:
+            loop += 1
             continue
         
         lastNumber = str(number) 
@@ -49,15 +57,3 @@ def start():
 
 if __name__ == "__main__":
     start()
-
-    # ## Weather
-    # pin = "777"
-    # mc.select(pin)
-
-    # ## Date
-    # pin = "666"
-    # mc.select(pin)
-
-    # ## Time
-    # pin = "999"
-    # mc.select(pin)
