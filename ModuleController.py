@@ -30,7 +30,6 @@ class ModuleController:
     def select(self, pin):
         # Test
         if(pin == "123"):
-            print(">>> Test PIN")
             logging.info("Test PIN")
             return True
 
