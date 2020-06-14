@@ -23,28 +23,30 @@ rx   = RX()
 
 
 def start():
-    lastNumber = ""
+    lastNumber = ""                      # Debounce
     pin = ""
-    loop = 0     ## Timeout timer
-    maxLoop = 15 ## Timeout limit
+    loop = 0                             # Timeout timer
+    maxLoop = 15                         # Timeout limit
 
     ## MAIN LOOP
     while(True):
-        if(loop >= maxLoop):
+        if(loop >= maxLoop):             # If timedout, clear pin reset timer
             pin = ""
             loop = 0
 
-        rx.recordAudio()                        # Record Audio
-        number = dtmf.dtmfDecode()              # Sample Audio find DTMF Number
-        #print(str(number))
+        rx.recordAudio()                 # Record Audio, 0.4sec samples
+        number = dtmf.dtmfDecode()       # Sample Audio find DTMF Number
 
-        if(str(number) != lastNumber):          # Debounce 
+        if(str(number) != lastNumber):   # Debounce 
             if(str(number) != "None"):
-                pin += str(number)              # Concat Number to PIN
-                print(">>> PIN: " + pin)
-                loop = 0
+                pin += str(number)       # Concat Number to PIN
+                loop = 0                 # Reset timeout
 
-                if(mc.select(pin) or len(pin) > 6 or ("*#" in str(pin))): # If PIN is valid, or larger then 6, clear pin
+                print(">>> PIN: " + pin)
+
+
+                # If PIN is valid, > 6, or "*#" is present, clear pin
+                if(mc.select(pin) or len(pin) > 6 or ("*#" in str(pin))): 
                     pin = ""
 
         else:
@@ -53,7 +55,7 @@ def start():
         
         lastNumber = str(number) 
 
-    rx.killAudio()                              # Stop Audio Recording
+    rx.killAudio()                       # Stop Audio Recording
 
 if __name__ == "__main__":
     start()

@@ -22,29 +22,33 @@ class ModuleController:
         self.time = Time(self.env.CALLSIGN)
         self.weather = Weather(self.env.CALLSIGN, self.env.OWM_API)
 
+    # Select function, PIN goes in, function is preformed
+    # and returns True if sucessfull so the PIN cal be cleared
+    # in main.py.
     def select(self, pin):
+        # Test
         if(pin == "123"):
-            print("Test PIN")                    #Test
+            print(">>> Test PIN")
             return True
 
-        elif(pin == "321"):
+        # May 4th be with you
+        elif(pin == "054"):
             self.audio.playWav("/wav/StarWars3.wav")  #Audio File
             return True
 
-        elif(pin == "666"):
+        # DATE = 3283
+        elif(pin == "3283"):
             self.time.readDate()
             return True
 
-        elif(pin == "999"):
+        # TIME = 8463
+        elif(pin == "8463"):
             self.time.readTime()
             return True
 
-        elif(pin == "777"):
+        # WX = 99
+        elif(pin == "99"):
             self.weather.readWeather(self.env.OWM_LOCATION)
-            return True
-
-        elif(pin == "ACAB"):
-            self.audio.playMp3("/wav/nwa.mp3")
             return True
 
         else:

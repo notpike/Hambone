@@ -1,7 +1,7 @@
 ###################################################
 # FILE: audio.py                                  #
 # AUTHOR: NotPike                                 #
-# Function: Audio out class                       #
+# Function: Audio out, uses aplay and mpg123      #
 ###################################################
 
 import os
