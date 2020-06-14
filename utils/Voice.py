@@ -6,7 +6,7 @@
 
 import os
 from gtts import gTTS
-
+from pathlib import Path
 
 class Voice:
 
@@ -14,16 +14,33 @@ class Voice:
                  language = 'en-gb',
                  slowAudioSpeed = False,):
 
+        self.msg = ""
         self.language       = language
         self.slowAudioSpeed = slowAudioSpeed
+        self.online         = True 
 
     def buildAudio(self, msg):
-        audioFile = gTTS(text=msg, 
-                         lang=self.language, 
-                         slow=self.slowAudioSpeed)
+        self.msg = msg
+        try:
+            audioFile = gTTS(text=msg, 
+                            lang=self.language, 
+                            slow=self.slowAudioSpeed)
 
-        audioFile.save('/tmp/gtts.mp3')
+            audioFile.save('/tmp/gtts.mp3')
+
+            ## If size is 0, Voice is offline
+            if(Path('/tmp/gtts.mp3').stat().st_size > 0):
+                self.online = True
+            else:
+                self.online = False
+                print(">>> Voice Offline")             
+        except:
+            self.online = False
+            print(">>> Voice Offline")
 
 
     def playAudio(self):
-        os.system("mpg123 /tmp/gtts.mp3")
+        if(self.online):
+            os.system("mpg123 /tmp/gtts.mp3")
+        else:
+            os.system("echo " + self.msg + " | espeak-ng -g 20 2> /dev/null")

@@ -30,12 +30,15 @@ def start():
     while(True):
         rx.recordAudio()                        # Record Audio
         number = dtmf.dtmfDecode()              # Sample Audio find DTMF Number
-        
-        if(str(number) != lastNumber):          # Debounce 
-            pin += str(number)                  # Concat Number to PIN
+        #print(str(number))
 
-            if(mc.select(pin) or len(pin) > 6): # If PIN is valid, or larger then 6, clear pin
-                pin = ""
+        if(str(number) != lastNumber):          # Debounce 
+            if(str(number) != "None"):
+                pin += str(number)                  # Concat Number to PIN
+                print(pin)
+
+                if(mc.select(pin) or len(pin) > 6 or ("*#" in str(pin))): # If PIN is valid, or larger then 6, clear pin
+                    pin = ""
 
         else:
             continue
@@ -45,16 +48,16 @@ def start():
     rx.killAudio()                              # Stop Audio Recording
 
 if __name__ == "__main__":
-    #start()
+    start()
 
-    ## Weather
-    pin = "777"
-    mc.select(pin)
+    # ## Weather
+    # pin = "777"
+    # mc.select(pin)
 
-    ## Date
-    pin = "666"
-    mc.select(pin)
+    # ## Date
+    # pin = "666"
+    # mc.select(pin)
 
-    ## Time
-    pin = "999"
-    mc.select(pin)
+    # ## Time
+    # pin = "999"
+    # mc.select(pin)

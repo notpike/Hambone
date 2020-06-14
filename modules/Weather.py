@@ -23,21 +23,36 @@ class Weather:
         self.tx = TX(gpio)
         self.voice = Voice()
         self.apiKey = api
+        self.online = True
 
     def readWeather(self, location='reno,usa'):
-        owm = pyowm.OWM(self.apiKey)
-        observation = owm.weather_at_place(location)
-        w = observation.get_weather()
-        
-        temp = round(((w.get_temperature()['temp'] - 275.15) * (9/5) + 32), 1) # K -> F
-        rh = w.get_humidity()
-        windSpeed = round((w.get_wind()['speed'] * 2.237), 1)                  # MPS -> MPH
-        windDirection = w.get_wind()['deg'] 
+        try:
+            owm = pyowm.OWM(self.apiKey)
+            observation = owm.weather_at_place(location)
+            w = observation.get_weather()
+            self.online = True
+        except:
+            print(">>> Weather Offline")
+            self.online = False
 
-        report = "Air temperature, " + str(temp) + ". " + "Relative Humidity, " + str(rh) + ". " + "Wind Speed, " + str(windSpeed) + " Miles Per Hour. At " + str(windDirection) + " degrees."
-    
-        self.voice.buildAudio(report)
-        self.tx.txOn()
-        self.voice.playAudio()
-        self.call.cw()
-        self.tx.txOff()
+            self.voice.buildAudio("Sorry. Weather is Offline")
+            self.tx.txOn()
+            self.voice.playAudio()
+            self.call.cw()
+            self.tx.txOff()
+
+        if(self.online):
+            temp = round(((w.get_temperature()['temp'] - 275.15) * (9/5) + 32), 1) # K -> F
+            rh = w.get_humidity()
+            windSpeed = round((w.get_wind()['speed'] * 2.237), 1)                  # MPS -> MPH
+            windDirection = w.get_wind()['deg'] 
+
+            report = "Air temperature, " + str(temp) + ". " + "Relative Humidity, " + str(rh) + ". " + "Wind Speed, " + str(windSpeed) + " Miles Per Hour. At " + str(windDirection) + " degrees."
+        
+            self.voice.buildAudio(report)
+            self.tx.txOn()
+            self.voice.playAudio()
+            self.call.cw()
+            self.tx.txOff()
+        else:
+            return

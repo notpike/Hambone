@@ -5,7 +5,7 @@ Not to throw away a mostly working product I re-purposed my failed experiment so
 
 ## Required Software
 ```
-$ sudo apt install python3-numpy mpg123 cw
+$ sudo apt install python3-numpy mpg123 cw espeak-ng
 $ pip3 install pyaudio scipy gTTS pyowm==2.10.0
 ```
 
