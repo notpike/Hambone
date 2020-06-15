@@ -28,11 +28,10 @@ class Time:
         day = date.today().strftime("%A")
         month = date.today().strftime("%B")
         dayNumber = date.today().strftime("%-d")
+        year = date.today().strftime("%Y")
 
-        todaysDate = "Today is " + day + " " + month + " " + dayNumber 
+        todaysDate = "Today is " + day + " " + month + " " + dayNumber + " " + year 
         logging.info("Date: " + todaysDate)
-
-
 
         self.voice.buildAudio(todaysDate)
         self.tx.txOn()
@@ -45,7 +44,7 @@ class Time:
         min = time.strftime("%M")
         pmAm = time.strftime("%p")
 
-        timeNow = "The time is " + hour + " " + min + " " + pmAm 
+        timeNow = "The time is " + hour + " " + min + " " + pmAm
         logging.info("Time: " + timeNow)
 
         self.voice.buildAudio(timeNow)

@@ -53,7 +53,7 @@ When the program starts, there is a listening loop in main that takes 0.4sec sam
 
 This “pin” variable is then sent to the select() function found in the ModuleController class. If the pin is valid, the select() function will run the linked Module and then return True. If select() returns True or if the length of the pin is greater then 6, the pin variable will reset to "". If the pin is invalid, the ModuleController.select() returns False and the listening loop in main will continue until one of the other two conditions return True. 
 
-This application runs synchronously meaning that each task must complete before beginning the next. Classes found in the util/ folder handle audio in, DTMF decoding, gpio manipulation, and playing audio. Classes found in the modules/ folder handle each individual function called by the ModuleController. Modules are responsible for activating the radio’s PTT using the TX class.  
+This application runs synchronously meaning that each task must complete before beginning the next. Classes found in the util/ folder handle audio in, DTMF decoding, gpio manipulation, and playing audio. Classes found in the modules/ folder handle each individual function called by the ModuleController. Module classes are responsible for activating the radio’s PTT using the TX class.  
 
 Global variables such as API keys and the user’s callsign is stored in the ENV class. There is a .gitignore file preventing env.py from being uploaded to the repo so if there's any variables added to env.py, env_example.py should be updated as well.
 
