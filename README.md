@@ -48,6 +48,41 @@ sudo python3.X main.py
 +---------------------+
 ```
 
+## Theory Of Operation
+When the program starts, there is a listing loop in main that takes 0.4sec samples (RX class) of the received audio and then decoded to see what DTMF tones (DTMF class) are present. If there is a valid DTMF tone it returns a char and concatenates it to the “pin” variable.
+
+This “pin” variable is then sent to the select() function in the ModuleController class to check if the command is valid. If the pin checks out, the linked Module will be ran and the select() function will return True. If select() returns True or if the length of the pin is greater then 6, the pin variable will reset. If the pin is invalid, the ModuleController.select() returns False and the listening loop in main will continue until the other two conditions return True. 
+
+Global variables such as API keys and the user’s callsign is to be stored in the ENV class. 
+
+## Directory Tree
+```
+rpi_vx-7r
+ ├── log/                ## Application Logs
+ │    └── event.log
+ |
+ ├── wav/                ## Audio Files
+ ├── util/               ## Application Util Classes
+ │    ├── Voice.py       ## Uses Google TTS or espeak to create audio
+ │    ├── TX.py          ## Handles GPIO Pin
+ │    ├── RX.py          ## Audio Sampling
+ │    ├── DTMF.py        ## DTMF Decoding
+ │    └── Callsign.py    ## Uses Voice Or cw to play user's callsign
+ |
+ ├── modules/            ## Application Util Classes
+ │    ├── Audio.py       ## Uses aplay or mpg123 to play audio files
+ │    ├── Time.py        ## Reads current Time and Date
+ │    └── Weather.py     ## Open Weather Map 
+ |
+ ├── env_example.py      ## Example envirement file
+ ├── env.py              ## Production envirement file
+ ├── ModuleController.py ## Module Controller
+ └── main.js             ## Main, runs the application
+```
+
+## ModuleController and Modules
+You can add your own modules by creating a class under the modules/ folder and linking it to the select() function found in ModuleController. The Module class should handle all TX, Voice, Callsign functions found under the utils/ folder. If you have any global variables such as API keys they should be stored in the ENV class.  
+
 ## YAESU VX-7R 2.5MM JACK
  Yaesu handhelds use a 4 point 2.5mm jack for voice, speaker and data. I recycled a broken hand mic while building this so below is the wire coloring correlation and diagram for this jack. Wire colors may vary so always double check with a multimeter.                               
 
