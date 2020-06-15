@@ -49,11 +49,13 @@ sudo python3.X main.py
 ```
 
 ## Theory Of Operation
-When the program starts, there is a listing loop in main that takes 0.4sec samples (RX class) of the received audio and then decoded to see what DTMF tones (DTMF class) are present. If there is a valid DTMF tone it returns a char and concatenates it to the “pin” variable.
+When the program starts, there is a listening loop in main that takes 0.4sec samples (RX class) of the received audio and then decodes it to see what DTMF tones (DTMF class) are present. If there is a valid DTMF tone it returns a char and it gets concatenated to the “pin” variable.
 
-This “pin” variable is then sent to the select() function in the ModuleController class to check if the command is valid. If the pin checks out, the linked Module will be ran and the select() function will return True. If select() returns True or if the length of the pin is greater then 6, the pin variable will reset. If the pin is invalid, the ModuleController.select() returns False and the listening loop in main will continue until one of the other two conditions return True. 
+This “pin” variable is then sent to the select() function found in the ModuleController class. If the pin is valid, the select() function will run the linked Module and then return True. If select() returns True or if the length of the pin is greater then 6, the pin variable will reset to "". If the pin is invalid, the ModuleController.select() returns False and the listening loop in main will continue until one of the other two conditions return True. 
 
-Global variables such as API keys and the user’s callsign is stored in the ENV class. There is a .gitignore file preventing env.py from being uploaded to the repo so if there's any variables added to env.py, the env_example.py should be updated as well.
+This application runs synchronously meaning that each task must complete before beginning the next. Classes found in the util/ folder handle audio in, DTMF decoding, gpio manipulation, and playing audio. Classes found in the modules/ folder handle each individual function called by the ModuleController. Modules are responsible for activating the radio’s PTT using the TX class.  
+
+Global variables such as API keys and the user’s callsign is stored in the ENV class. There is a .gitignore file preventing env.py from being uploaded to the repo so if there's any variables added to env.py, env_example.py should be updated as well.
 
 ## Directory Tree
 ```
