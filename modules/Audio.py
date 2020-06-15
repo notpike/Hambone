@@ -24,7 +24,6 @@ class Audio:
         self.tx = TX(gpio)
 
     def playWav(self, file):
-        print(">>> Playing Wav: " + file)
         logging.info("Playing Wav: " + file)
 
         self.tx.txOn()
@@ -33,7 +32,6 @@ class Audio:
         self.tx.txOff()
     
     def playMp3(self, file):
-        print(">>> Playing Mp3: " + file)
         logging.info("Playing Mp3: " + file)
 
         self.tx.txOn()

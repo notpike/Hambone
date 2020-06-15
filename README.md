@@ -34,18 +34,18 @@ $ nano env.py
 sudo python3.X main.py
 ```
 
-## Current DTMF Commands
+## DTMF Commands
 ```
-+---------------------+
-|   MODULE  |   PIN   |
-+---------------------+
-| TEST     -->   123  |
-| AUDIO Ex -->   054  |
-| DATE     -->   3283 |
-| TIME     -->   8463 |
-| WX       -->   99   |
-| CLR PIN  -->   *#   |  
-+---------------------+
++----------------------------+
+|   MODULE  |       PIN      |
++----------------------------+
+| TEST     -->   123         |
+| AUDIO Ex -->   054         |
+| DATE     -->   3283 (#DATE)|
+| TIME     -->   8463 (#TIME)|
+| WEATHER  -->   99   (#WX)  |
+| CLR PIN  -->   *#          |  
++----------------------------+
 ```
 
 ## Theory Of Operation
