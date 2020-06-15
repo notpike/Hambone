@@ -33,9 +33,9 @@ class Numbers:
 
         ## Gen random numbers
         for i in range(3):
-            setOne += randrange(1,10) + ", "
-            setTwo += randrange(1,10) + ", "
-            setThree += randrange(1,10) + ", "
+            setOne += str(randrange(1,10)) + ", "
+            setTwo += str(randrange(1,10)) + ", "
+            setThree += str(randrange(1,10)) + ", "
 
         message = (setOne * 3) + ". " + (setTwo * 3) + ". " + (setThree * 3)
         
