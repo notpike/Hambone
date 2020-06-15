@@ -1,7 +1,7 @@
 ###################################################
 # FILE: main.py                                   #
 # AUTHOR: NotPike                                 #
-# Function: main()                                 #
+# Function: main()                                #
 ###################################################
 
 ## Logging
@@ -75,7 +75,7 @@ def start():
 
 if __name__ == "__main__":
     init()
-    #start()
+    start()
 
-    pin = "3283"
-    mc.select(pin)
+    # pin = "3283"
+    # mc.select(pin)

@@ -14,7 +14,7 @@ $ sudo apt install python3-numpy mpg123 cw espeak-ng
 $ pip3 install pyaudio scipy gTTS pyowm==2.10.0
 ```
 
-## Enable NTP Time and change Time Zone
+## Enable NTP Time and Change Time Zone
 ```
 $ sudo timedatectl set-ntp True
 $ sudo raspi-config 
@@ -53,7 +53,7 @@ When the program starts, there is a listing loop in main that takes 0.4sec sampl
 
 This “pin” variable is then sent to the select() function in the ModuleController class to check if the command is valid. If the pin checks out, the linked Module will be ran and the select() function will return True. If select() returns True or if the length of the pin is greater then 6, the pin variable will reset. If the pin is invalid, the ModuleController.select() returns False and the listening loop in main will continue until the other two conditions return True. 
 
-Global variables such as API keys and the user’s callsign is to be stored in the ENV class. 
+Global variables such as API keys and the user’s callsign is stored in the ENV class. There is a .gitignore file preventing env.py from being uploaded to the repo so if there's any updates made env_example.py should be updated.
 
 ## Directory Tree
 ```
@@ -69,7 +69,7 @@ rpi_vx-7r
  │    ├── DTMF.py        ## DTMF Decoding
  │    └── Callsign.py    ## Uses Voice Or cw to play user's callsign
  |
- ├── modules/            ## Application Util Classes
+ ├── modules/            ## Modules
  │    ├── Audio.py       ## Uses aplay or mpg123 to play audio files
  │    ├── Time.py        ## Reads current Time and Date
  │    └── Weather.py     ## Open Weather Map 

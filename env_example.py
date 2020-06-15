@@ -9,7 +9,7 @@ import logging
 class ENV:
 
     def __init__(self):
-        self.CALLSIGN = ""
+        self.CALLSIGN = "HACKER"
         self.GPIO = 17
         self.DEV = False
         self.TX = True
