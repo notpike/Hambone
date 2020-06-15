@@ -1,5 +1,5 @@
 ###################################################
-# FILE: audio.py                                  #
+# FILE: Nudio.py                                  #
 # AUTHOR: NotPike                                 #
 # Function: Audio out, uses aplay and mpg123      #
 ###################################################

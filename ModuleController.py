@@ -12,6 +12,7 @@ import logging
 from modules.Audio import *
 from modules.Time import *
 from modules.Weather import *
+from modules.Numbers import *
 
 
 class ModuleController:
@@ -23,6 +24,7 @@ class ModuleController:
         self.audio = Audio(self.env.CALLSIGN, self.env.GPIO)
         self.time = Time(self.env.CALLSIGN, self.env.GPIO)
         self.weather = Weather(self.env.CALLSIGN, self.env.OWM_API, self.env.GPIO)
+        self.numbers = Numbers(self.call, self.secret, self.env.GPIO)
 
     # Select function, PIN goes in, function is preformed
     # and returns True if sucessfull so the PIN cal be cleared
@@ -52,6 +54,11 @@ class ModuleController:
         elif(pin == "99"):
             self.weather.readWeather(self.env.OWM_LOCATION)
             return True
+
+        # ###
+        elif(pin == "###")
+            self. 
+
 
         # Clear pin with "*#"
         elif("*#" in pin):
