@@ -33,11 +33,12 @@ class Numbers:
 
         ## Gen random numbers
         for i in range(3):
-            setOne += str(randrange(1,10)) + ", "
-            setTwo += str(randrange(1,10)) + ", "
-            setThree += str(randrange(1,10)) + ", "
+            setOne += str(randrange(1,10)) + ". "
+            setTwo += str(randrange(1,10)) + ". "
+            setThree += str(randrange(1,10)) + ". "
 
-        message = (setOne * 3) + ". " + (setTwo * 3) + ". " + (setThree * 3)
+        message = (setOne * 3) + ". . . " + (setTwo * 3) + ". . . " + (setThree * 3)
+        logging.info("Numbers: " + message)
         
         self.voice.buildAudio(message)
         self.tx.txOn()
