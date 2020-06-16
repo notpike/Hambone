@@ -18,6 +18,8 @@ from env import *
 
 class DTMF:
 
+    env = ENV()
+
     DTMF_TABLE = {
         '1': [1209, 697], '2': [1336, 697], '3': [1477, 697], 'A': [1633, 697],
         '4': [1209, 770], '5': [1336, 770], '6': [1477, 770], 'B': [1633, 770],
@@ -26,9 +28,8 @@ class DTMF:
     } 
 
      
-    def __init__(self, file="/tmp/file.wav"):
+    def __init__(self, file=env.WAVE_OUTPUT_FILENAME):
         self.WAVE_OUTPUT_FILENAME = file
-        self.env = ENV()
 
     def isNumberInArray(self, array, number):
         offset = 5
@@ -44,7 +45,7 @@ class DTMF:
             # data is voice signal. its type is list(or numpy array)
 
             # Calculate fourier trasform of data
-            FourierTransformOfData = np.fft.fft(data, 20000)
+            FourierTransformOfData = np.fft.fft(data, self.env.RATE)
 
             # Convert fourier transform complex number to integer numbers
             for i in range(len(FourierTransformOfData)):

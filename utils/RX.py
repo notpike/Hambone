@@ -20,17 +20,16 @@ from env import *
 class RX:
 
     audio = pyaudio.PyAudio()
+    env = ENV()
 
     def __init__(self,
-                 input_device_index=1, 
-                 file="/tmp/file.wav",
-                 format=pyaudio.paInt16,
-                 channels=1,
-                 rate=20000,
-                 chunk=1024,
-                 time=0.4):
-
-        self.env = ENV()
+                 input_device_index=env.INDEX, 
+                 file=env.WAVE_OUTPUT_FILENAME,
+                 format=env.FILE_FORMAT,
+                 channels=env.CHANNELS,
+                 rate=env.RATE,
+                 chunk=env.CHUNK,
+                 time=env.RATE_SECONDS):
 
         self.WAVE_OUTPUT_FILENAME = file
         self.FORMAT = format       # format of sampling 16 bit int
@@ -45,7 +44,7 @@ class RX:
             # start Recording
             stream = self.audio.open(format=self.FORMAT, 
                                     channels=self.CHANNELS,
-                                    input_device_index=1,
+                                    input_device_index=0,
                                     rate=self.RATE, 
                                     input=True,
                                     frames_per_buffer=self.CHUNK)
