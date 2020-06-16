@@ -58,6 +58,7 @@ class ModuleController:
         # ###
         elif(pin == "###"):
             self.numbers.numbers() 
+            return True
 
 
         # Clear pin with "*#"

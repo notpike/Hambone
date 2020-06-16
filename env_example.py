@@ -23,4 +23,4 @@ class ENV:
         self.OWM_LOCATION = "Reno,USA"
 
         ### Numbers ###
-        self.secret = False
+        self.SECRET = False  # Controls if your Callsign is sent out or not
