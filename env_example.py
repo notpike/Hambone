@@ -7,6 +7,7 @@
 import logging
 import pyaudio
 
+
 class ENV:
 
     def __init__(self):
@@ -15,6 +16,8 @@ class ENV:
         self.DEV = False
         self.TX = True
         self.RX = True
+
+        ### Logging ###
         self.LOGGING_LEVEL = logging.INFO
         self.LOGGING_FILE = 'log/event.log'
 

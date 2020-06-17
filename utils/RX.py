@@ -19,8 +19,8 @@ from env import *
 
 class RX:
 
-    audio = pyaudio.PyAudio()
     env = ENV()
+    audio = pyaudio.PyAudio()
 
     def __init__(self,
                  input_device_index=env.INDEX, 
@@ -29,7 +29,7 @@ class RX:
                  channels=env.CHANNELS,
                  rate=env.RATE,
                  chunk=env.CHUNK,
-                 time=env.RATE_SECONDS):
+                 time=env.RECORD_SECONDS):
 
         self.WAVE_OUTPUT_FILENAME = file
         self.FORMAT = format       # format of sampling 16 bit int
@@ -42,12 +42,18 @@ class RX:
     def recordAudio(self):
         if(self.env.RX):
             # start Recording
+            # stream = self.audio.open(format=self.FORMAT, 
+            #                         channels=self.CHANNELS,
+            #                         input_device_index=0,
+            #                         rate=self.RATE, 
+            #                         input=True,
+            #                         frames_per_buffer=self.CHUNK)
+
             stream = self.audio.open(format=self.FORMAT, 
-                                    channels=self.CHANNELS,
-                                    input_device_index=0,
-                                    rate=self.RATE, 
-                                    input=True,
-                                    frames_per_buffer=self.CHUNK)
+                        channels=self.CHANNELS,
+                        rate=self.RATE, 
+                        input=True,
+                        frames_per_buffer=self.CHUNK)
             frames = []
 
             for i in range(0, int(self.RATE / self.CHUNK * self.RECORD_SECONDS)):
