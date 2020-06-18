@@ -48,6 +48,7 @@ sudo python3.X main.py
 | DATE     -->   3283 (#DATE)|
 | TIME     -->   8463 (#TIME)|
 | WEATHER  -->   99   (#WX)  |
+| NUMBERS  -->   ###         |
 | CLR PIN  -->   *#          |  
 +----------------------------+
 ```
