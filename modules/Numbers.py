@@ -30,7 +30,7 @@ class Numbers:
         if(self.secret != True):
             self.call = Callsign(call)
 
-        self.voice = Voice(self.env.VOICE_SPEED_SLOW, True) #Slow Talking
+        self.voice = Voice(self.env.VOICE_LANGUAGE, self.env.VOICE_SPEED_SLOW) #Slow Talking
         self.tx = TX(gpio)
 
     def numbers(self):
@@ -53,9 +53,4 @@ class Numbers:
         if(self.secret != True):
             self.call.cw()
         self.tx.txOff()
-
-
-
-
-
-
+        

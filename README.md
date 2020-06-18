@@ -1,7 +1,7 @@
-## rpi_vx-7r
-あの時だ！ :D 
+## Hambone
+<em>Hambone (Noun): Ham + Bot + Tone</em>
 
-I built a RPi controller for my Yaesu VX-7R handheld so it can activate the PTT and transmit audio without human interaction. It listens for DTMF commands from the transceiver and dose an action accordingly. Think of this as an IRC bot but with a radio! 
+Hambone is a Ham Radio bot built for the Raspberry Pi. It acts as computer interface for your radio by listening for DTMF commands and can activate the radio's PTT via the RPI's GPIO to play audio. Think of this as an IRC bot but with a radio! 
 
 This project was the result of an experiment I had seeing if my handheld could work as a POCSAG transmitter. It didn’t work because the VX-7R doesn't support transmitting data at 9600 baud. More or less it took the 2FSK coming from the audio source and modulated it as NFM. Not to throw away a mostly working product I re-purposed my failed experiment so it can be something fun like a fake number station or read the weather.
 
@@ -74,19 +74,20 @@ rpi_vx-7r
  ├── modules/            ## Modules
  │    ├── Audio.py       ## Uses aplay or mpg123 to play audio files
  │    ├── Time.py        ## Reads current Time and Date
+ │    ├── Numbers.py     ## *Random* Numbers Station
  │    └── Weather.py     ## Open Weather Map 
  |
  ├── env_example.py      ## Example envirement file
  ├── env.py              ## Production envirement file
  ├── ModuleController.py ## Module Controller
- └── main.js             ## Main, runs the application
+ └── main.py             ## Main, runs the application
 ```
 
 ## ModuleController and Modules
 You can add your own modules by creating a class under the modules/ folder and linking it to the select() function found in ModuleController. The Module class should handle all TX, Voice, Callsign functions found under the utils/ folder. If you have any global variables such as API keys they should be stored in the ENV class.  
 
 ## YAESU VX-7R 2.5MM JACK
- Yaesu handhelds use a 4 point 2.5mm jack for voice, speaker and data. I recycled a broken hand mic while building this so below is the wire coloring correlation and diagram for this jack. Wire colors may vary so always double check with a multimeter.                               
+ Although this project can be used for almost any radio below are details on building this for a Yaesu VX-7R. Yaesu handhelds use a 4 point 2.5mm jack for voice, speaker and data. I recycled a broken hand mic while building this so below is the wire coloring correlation and diagram for this jack. Wire colors may vary so always double check with a multimeter.                               
 
 ```
 +--+   GND       MIC      DATA    SPEAKER
@@ -107,28 +108,35 @@ You can add your own modules by creating a class under the modules/ folder and l
 +---------------------+
 ```
 
-## RPi SCHEMATIC                       
-For this radio’s PTT to be activated Mic needs a 2.2K ohm resistance to ground. Voice is also being carried over the same line while this resistance is applied so to create this a parallel circuit is needed. This took some creativity to make work because the RPi audio ground and RPi ground are on the same circuit and because I was using a NPN I had to fudge the RPi’s audio in to keep it from shorting. IE, I flipped the RPi’s audio wires so the RPi’s audio line is going into the Yaesu’s ground and vise versa. Below is schematic for this circuit.    
+## RPi SCHEMATIC TO VX-7R                       
+For the Yaesu's PTT to be activated Mic needs a 2.2K ohm resistance to ground. Voice is also being carried over the same line while this resistance is applied so to create this a parallel circuit is needed. This took some creativity to make work because the RPi audio ground and RPi ground are on the same circuit and because I was using a NPN I had to fudge the RPi’s audio in to keep it from shorting. IE, I flipped the RPi’s audio wires so the RPi’s audio line is going into the Yaesu’s ground and vise versa. Below is schematic for this circuit.    
 
 ```
-                                     +------+    
-            +------------------------+PI GND|    
-            |                        +------+    
-            |    NPN                             
-            +---+\|       440Ω       +----------+
-            |     +-----+/\/\/\+-----+PI GPIO 17|
-            |   +<|                  +----------+
-            |   |                                
-            |   | 2.2KΩ                          
-+-----------+   +/\/\/\+                         
-|                      |                         
-|  +------------+      |  +--------------------+ 
-|  |PI AUDIO OUT+------+--+VX-7R GND BRAID WIRE| 
-|  +------------+         +-------------- -----+ 
-|                                                
-|  +------------+         +--------------------+ 
-|  |PI AUDIO GND+--+------+VX-7R MIC WHITE WIRE| 
-|  +------------+  |      +--------------------+ 
-|                  |                             
-+------------------+                             
+                                 +------+
++----------------+---------------+PI GND|
+|                |               +------+
+|                |
+|                ++\|    440Ω    +----------+
+|                   +--+/\/\/\+--+PI GPIO 17|
+|                + <|            +----------+
+|                |
+|                |  2.2KΩ
+|                + /\/\/\+
+| +------------+         |       +--------------------+
+| |PI AUDIO OUT+---------+-------+VX|7R MIC WHITE WIRE|
+| +------------+                 +--------------------+
+|
++-----------------------------+
+                              |
++------------+                |  +--------------------+
+|PI AUDIO GND+-------------------+VX|7R GND BRAID WIRE|
++------------+                |  +--------------------+
+                              |
++----------+                  |
+|PI MIC GND+------------------+
++----------+
+
++---------+                      +--------------------+
+|PI MIC IN+----------------------+VX|7R AUDIO RED WIRE|
++---------+                      +--------------------+                            
 ```

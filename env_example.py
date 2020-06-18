@@ -1,5 +1,5 @@
 ###################################################
-# FILE: Weather.py                                #
+# FILE: env.py                                #
 # AUTHOR: NotPike                                 #
 # Function: Envirement class, vars go here.       #
 ###################################################
