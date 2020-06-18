@@ -13,13 +13,19 @@ import logging
 import sys
 sys.path.append("..")
 
+from env import *
 from utils.TX import *
 from utils.Callsign import *
 
 
 class Audio:
 
-    def __init__(self, call, gpio=17):
+    env = ENV()
+
+    def __init__(self, 
+                 call=env.CALLSIGN, 
+                 gpio=env.GPIO):
+
         self.call = Callsign(call)
         self.tx = TX(gpio)
 

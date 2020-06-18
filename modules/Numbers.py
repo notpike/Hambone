@@ -11,6 +11,7 @@ import logging
 import sys
 sys.path.append("..")
 
+from env import *
 from utils.TX import *
 from utils.Voice import *
 from utils.Callsign import *
@@ -18,12 +19,18 @@ from utils.Callsign import *
 
 class Numbers:
 
-    def __init__(self, call, secret=False, gpio=17):
+    env = ENV()
+
+    def __init__(self, 
+                 call=env.CALLSIGN, 
+                 secret=env.SECRET, 
+                 gpio=env.GPIO):
+
         self.secret = secret
         if(self.secret != True):
             self.call = Callsign(call)
 
-        self.voice = Voice('en-gb', True) #Slow Talking
+        self.voice = Voice(self.env.VOICE_SPEED_SLOW, True) #Slow Talking
         self.tx = TX(gpio)
 
     def numbers(self):

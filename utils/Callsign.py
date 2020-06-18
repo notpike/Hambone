@@ -14,8 +14,9 @@ from utils.Voice import *
 
 class Callsign:
 
+    voice = Voice()
+
     def __init__(self, call):
-        self.voice = Voice()
         self.call = call
 
     def readCallsign(self):

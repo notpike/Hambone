@@ -25,15 +25,21 @@ class ENV:
         self.WAVE_OUTPUT_FILENAME = "/tmp/file.wav"
         self.FILE_FORMAT = pyaudio.paInt16 # format of sampling 16 bit int
         self.CHANNELS = 1                  # number of channels it means number of sample in every sampling
-        self.RATE = 20000                  # number of sample in 1 second sampling
-        self.CHUNK = 1024                  # length of every chunk
+        self.RATE = 44100                  # number of sample in 1 second sampling
+        self.CHUNK = 3072                  # length of every chunk
         self.RECORD_SECONDS = 0.4          # time of recording in seconds
         self.INDEX = 0   
+      
+        ### VOICE Utility ###
+        self.VOICE_LANGUAGE = 'en-gb'
+        self.VOICE_SPEED_SLOW = False 
+        self.VOICE_ONLINE = True
 
-        ### OPEN WEATHER MAP ###
+        ### WEATHER Module ###
         ## https://openweathermap.org/
-        self.OWM_API  = ""
+        self.OWM_API  = "e803f0816ca8f7ceeafcab6d1877d0e2"
         self.OWM_LOCATION = "Reno,USA"
+        self.OWM_ONLINE = True
 
-        ### Numbers ###
-        self.SECRET = False  # Controls if your Callsign is sent out or not
+        ### Numbers Module ###
+        self.SECRET = False  # Controls

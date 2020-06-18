@@ -15,8 +15,9 @@ from env import *
 
 class TX:
     
-    def __init__(self, gpio=17):
-        self.env = ENV()
+    env = ENV()
+
+    def __init__(self, gpio=env.GPIO):
 
         if(self.env.DEV == False and self.env.TX):
             self.GPIO = gpio

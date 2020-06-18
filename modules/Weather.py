@@ -13,16 +13,24 @@ import logging
 import sys
 sys.path.append("..")
 
+from env import *
 from utils.TX import *
 from utils.Voice import *
 from utils.Callsign import *
 
 class Weather:
 
-    def __init__(self, call, api, gpio=17, online=True):
+    env = ENV()
+    voice = Voice()
+
+    def __init__(self, 
+                 call=env.CALLSIGN, 
+                 api=env.OWM_API, 
+                 gpio=env.GPIO, 
+                 online=env.OWM_ONLINE):
+
         self.call = Callsign(call)
         self.tx = TX(gpio)
-        self.voice = Voice()
         self.apiKey = api
         self.online = online
 

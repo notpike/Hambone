@@ -1,7 +1,7 @@
 ###################################################
-# FILE: rx.py                                     #
+# FILE: RX.py                                     #
 # AUTHOR: NotPike                                 #
-# Function: gTTS class                            #
+# Function: espeak and gTTS helper                #
 ###################################################
 
 import logging
@@ -9,11 +9,19 @@ import os
 from gtts import gTTS
 from pathlib import Path
 
+## Move back to root directory
+import sys
+sys.path.append("..")
+from env import *
+
 class Voice:
 
+    env = ENV()
+
     def __init__(self,
-                 language = 'en-gb',
-                 slowAudioSpeed = False,):
+                 language = env.VOICE_LANGUAGE,
+                 slowAudioSpeed = env.VOICE_SPEED_SLOW,
+                 online = env.VOICE_ONLINE):
 
         self.msg = ""
         self.language       = language

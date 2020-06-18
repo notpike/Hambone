@@ -12,6 +12,7 @@ import logging
 import sys
 sys.path.append("..")
 
+from env import *
 from utils.TX import *
 from utils.Voice import *
 from utils.Callsign import *
@@ -19,9 +20,14 @@ from utils.Callsign import *
 
 class Time:
 
-    def __init__(self, call, gpio=17):
+    env = ENV()
+    voice = Voice()
+
+    def __init__(self, 
+                 call=env.CALLSIGN, 
+                 gpio=env.GPIO):
+                 
         self.tx = TX(gpio)
-        self.voice = Voice()
         self.call = Callsign(call)
     
     def readDate(self):

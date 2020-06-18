@@ -28,8 +28,13 @@ class DTMF:
     } 
 
      
-    def __init__(self, file=env.WAVE_OUTPUT_FILENAME):
+    def __init__(self, 
+                 file=env.WAVE_OUTPUT_FILENAME,
+                 rate=env.RATE):
+      
         self.WAVE_OUTPUT_FILENAME = file
+        self.RATE = rate
+
 
     def isNumberInArray(self, array, number):
         offset = 5
@@ -45,7 +50,7 @@ class DTMF:
             # data is voice signal. its type is list(or numpy array)
 
             # Calculate fourier trasform of data
-            FourierTransformOfData = np.fft.fft(data, self.env.RATE)
+            FourierTransformOfData = np.fft.fft(data, self.RATE)
 
             # Convert fourier transform complex number to integer numbers
             for i in range(len(FourierTransformOfData)):

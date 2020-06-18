@@ -19,7 +19,7 @@ except ImportError as error:
     logging.critical("Missing env.py file. Please copy the env_example.py to env.py and update variables.")
     exit()
 
-## Application Classes
+## Utility Classes
 from utils.DTMF import *
 from utils.RX import *
 from utils.TX import *
@@ -76,6 +76,3 @@ def start():
 if __name__ == "__main__":
     init()
     start()
-
-    # pin = "3283"
-    # mc.select(pin)
