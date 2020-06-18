@@ -1,6 +1,7 @@
 # Hambone
 
 ![Bender Hamboning it up](extra/hambone.gif)
+<br>
 <em>Hambone (Noun): Ham + Bot + Tone</em>
 
 ## About
