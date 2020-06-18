@@ -1,8 +1,9 @@
-## Hambone
-<em>Hambone (Noun): Ham + Bot + Tone</em>
+# Hambone
 
 ![Bender Hamboning it up](extra/hambone.gif)
+<em>Hambone (Noun): Ham + Bot + Tone</em>
 
+## About
 Hambone is a Ham Radio Bot built for the Raspberry Pi. It acts as computer interface for your radio by listening for DTMF commands and can activate the radio's PTT via the RPI's GPIO to play audio. Think of this as an IRC bot but with a radio! 
 
 This project was the result of an experiment I had seeing if my handheld could work as a POCSAG transmitter. It didn’t work because the VX-7R doesn't support transmitting data at 9600 baud. More or less it took the 2FSK coming from the audio source and modulated it as NFM. Not to throw away a mostly working product I re-purposed my failed experiment so it can be something fun like a fake number station or read the weather.
