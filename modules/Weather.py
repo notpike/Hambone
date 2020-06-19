@@ -25,8 +25,8 @@ class Weather:
 
     def __init__(self, 
                  call=env.CALLSIGN, 
+                 gpio=env.GPIO,
                  api=env.OWM_API, 
-                 gpio=env.GPIO, 
                  online=env.OWM_ONLINE):
 
         self.call = Callsign(call)

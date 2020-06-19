@@ -37,7 +37,7 @@ class ENV:
 
         ### WEATHER Module ###
         ## https://openweathermap.org/
-        self.OWM_API  = "e803f0816ca8f7ceeafcab6d1877d0e2"
+        self.OWM_API  = ""
         self.OWM_LOCATION = "Reno,USA"
         self.OWM_ONLINE = True
 

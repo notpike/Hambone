@@ -37,7 +37,7 @@ class ModuleController:
 
         # May 4th be with you
         elif(pin == "054"):
-            self.audio.playWav("/wav/StarWars3.wav")  #Audio File
+            self.audio.run("/wav/StarWars3.wav")  #Audio File
             return True
 
         # DATE = 3283
@@ -57,7 +57,7 @@ class ModuleController:
 
         # ###
         elif(pin == "###"):
-            self.numbers.numbers() 
+            self.numbers.run() 
             return True
 
 

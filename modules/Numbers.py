@@ -5,35 +5,20 @@
 ###################################################
 
 from random import *
-import logging
-
-## Move back to root directory
-import sys
-sys.path.append("..")
-
-from env import *
-from utils.TX import *
-from utils.Voice import *
-from utils.Callsign import *
+from Module import *
 
 
-class Numbers:
+class Numbers(Module):
 
-    env = ENV()
+    def __init__(self):
 
-    def __init__(self, 
-                 call=env.CALLSIGN, 
-                 secret=env.SECRET, 
-                 gpio=env.GPIO):
-
-        self.secret = secret
-        if(self.secret != True):
-            self.call = Callsign(call)
+        if(self.env.SECRET != True):
+            self.call = Callsign(self.env.CALLSIGN)
 
         self.voice = Voice(self.env.VOICE_LANGUAGE, self.env.VOICE_SPEED_SLOW) #Slow Talking
-        self.tx = TX(gpio)
+        self.tx = TX(self.env.GPIO)
 
-    def numbers(self):
+    def task(self):
         setOne = ""
         setTwo = ""
         setThree = ""
@@ -48,9 +33,13 @@ class Numbers:
         logging.info("Numbers: " + message)
         
         self.voice.buildAudio(message)
+
+
+    ## Override
+    def run(self):
         self.tx.txOn()
+        self.task()
         self.voice.playAudio()
-        if(self.secret != True):
+        if(self.env.SECRET != True):
             self.call.cw()
-        self.tx.txOff()
-        
+        self.tx.txOff()        
