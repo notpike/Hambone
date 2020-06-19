@@ -22,7 +22,7 @@ class ModuleController:
 
         ### DECLARE MODULES ###
         self.audio = Audio()
-        self.time = Time(self.env.CALLSIGN, self.env.GPIO)
+        self.time = Time()
         self.weather = Weather()
         self.numbers = Numbers()
 
