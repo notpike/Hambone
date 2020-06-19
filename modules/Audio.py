@@ -4,11 +4,11 @@
 # Function: Audio out, uses aplay and mpg123      #
 ###################################################
 
+from Module import *
+
 import os
 import time
 import pathlib
-
-from Module import *
 
 
 class Audio(Module):

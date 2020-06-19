@@ -7,37 +7,24 @@
 
 import pyowm
 import math
-import logging
+from Module import *
 
-## Move back to root directory
-import sys
-sys.path.append("..")
 
-from env import *
-from utils.TX import *
-from utils.Voice import *
-from utils.Callsign import *
+class Weather(Module):
 
-class Weather:
+    def __init__(self):
+        self.call = Callsign(self.env.CALLSIGN)
+        self.tx = TX(self.env.GPIO)
 
-    env = ENV()
-    voice = Voice()
+        self.apiKey = self.env.OWM_API
+        self.online = self.env.OWM_ONLINE
+        self.location = self.env.OWM_LOCATION
 
-    def __init__(self, 
-                 call=env.CALLSIGN, 
-                 gpio=env.GPIO,
-                 api=env.OWM_API, 
-                 online=env.OWM_ONLINE):
 
-        self.call = Callsign(call)
-        self.tx = TX(gpio)
-        self.apiKey = api
-        self.online = online
-
-    def readWeather(self, location='reno,usa'):
+    def task(self):
         try:
             owm = pyowm.OWM(self.apiKey)
-            observation = owm.weather_at_place(location)
+            observation = owm.weather_at_place(self.location)
             w = observation.get_weather()
             self.online = True
         except:
@@ -45,10 +32,6 @@ class Weather:
             self.online = False
 
             self.voice.buildAudio("Sorry. The weather is Offline")
-            self.tx.txOn()
-            self.voice.playAudio()
-            self.call.cw()
-            self.tx.txOff()
 
         if(self.online):
             temp = round(((w.get_temperature()['temp'] - 275.15) * (9/5) + 32), 1) # K -> F
@@ -60,9 +43,13 @@ class Weather:
             logging.info("Weather: " + report)
 
             self.voice.buildAudio(report)
-            self.tx.txOn()
-            self.voice.playAudio()
-            self.call.cw()
-            self.tx.txOff()
         else:
             return
+
+    ## Override
+    def run(self):
+        self.task()
+        self.tx.txOn()
+        self.voice.playAudio()
+        self.call.cw()
+        self.tx.txOff()

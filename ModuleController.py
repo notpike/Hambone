@@ -21,10 +21,10 @@ class ModuleController:
         self.env = env
 
         ### DECLARE MODULES ###
-        self.audio = Audio(self.env.CALLSIGN, self.env.GPIO)
+        self.audio = Audio()
         self.time = Time(self.env.CALLSIGN, self.env.GPIO)
-        self.weather = Weather(self.env.CALLSIGN, self.env.OWM_API, self.env.GPIO)
-        self.numbers = Numbers(self.env.CALLSIGN, self.env.SECRET, self.env.GPIO)
+        self.weather = Weather()
+        self.numbers = Numbers()
 
     # Select function, PIN goes in, function is preformed
     # and returns True if sucessfull so the PIN cal be cleared
@@ -52,7 +52,7 @@ class ModuleController:
 
         # WX = 99
         elif(pin == "99"):
-            self.weather.readWeather(self.env.OWM_LOCATION)
+            self.weather.run()
             return True
 
         # ###

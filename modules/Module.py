@@ -12,10 +12,13 @@ sys.path.append("..")
 from env import *
 from utils.TX import *
 from utils.Callsign import *
+from utils.Voice import *
+
 
 class Module:
 
     env = ENV()
+    voice = Voice()
 
     def __init__(self, env=env):
         self.env = env

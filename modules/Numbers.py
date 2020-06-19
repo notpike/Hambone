@@ -4,8 +4,8 @@
 # Function: Fake numbers station                  #
 ###################################################
 
-from random import *
 from Module import *
+from random import *
 
 
 class Numbers(Module):
@@ -37,8 +37,8 @@ class Numbers(Module):
 
     ## Override
     def run(self):
-        self.tx.txOn()
         self.task()
+        self.tx.txOn()
         self.voice.playAudio()
         if(self.env.SECRET != True):
             self.call.cw()
