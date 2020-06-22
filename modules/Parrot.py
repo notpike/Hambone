@@ -7,6 +7,7 @@ from scipy.io import wavfile as wav
 import pyaudio
 import wave
 import threading
+import pathlib
 
 from modules.Module import *
 from modules.Audio import *
@@ -26,15 +27,16 @@ class Parrot(Module):
 
     def task(self):
         # Instructions
-        msg = "Please leave a message after the beep. Hit pound when done with your message. Beeeeep!"
+        msg = "Please leave a message after the beep. Hit pound when done with your message."
         self.voice.buildAudio(msg)
         self.tx.txOn()
         self.voice.playAudio()
+        self.mAudio.playWav(str(pathlib.Path().absolute()) + "/wav/beep.wav")
         self.tx.txOff()
 
         # Record
         self.recordAudio()
-        self.killAudio()
+        #self.killAudio()
 
         # Playback
         self.tx.txOn()
@@ -82,7 +84,6 @@ class Parrot(Module):
                 sampleCount = 0 #Reset
 
         # Remove Last chunk to prevent tone from being brodcasted
-        print(len(frames))
 
         # Stop Recording
         stream.stop_stream()
