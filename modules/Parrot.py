@@ -72,7 +72,12 @@ class Parrot(Module):
         dtmfSample = ''
 
         while(dtmfSample != stop and maxTime >= maxTimeCount):  #Keep recording untill # or maxttime
-            data = stream.read(self.env.CHUNK, exception_on_overflow = False) #Sample
+            try:
+                data = stream.read(self.env.CHUNK) #Sample
+            except IOError:
+                logging.error("OVERFLOW!")
+
+            
             frames.append(data)                #Save to DTMF sample
             parrotFrames.append(data)          #Save to Parrot.wav
 
