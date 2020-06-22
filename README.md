@@ -44,6 +44,7 @@ sudo python3.X main.py
 |   MODULE  |       PIN      |
 +----------------------------+
 | TEST     -->   123         |
+| PARROT   -->   3246 (#ECHO)|
 | AUDIO Ex -->   054         |
 | DATE     -->   3283 (#DATE)|
 | TIME     -->   8463 (#TIME)|
@@ -84,6 +85,7 @@ rpi_vx-7r
  │    ├── Audio.py          ## Uses aplay or mpg123 to play audio files
  │    ├── Time.py           ## Reads current Time and Date
  │    ├── Numbers.py        ## *Random* Numbers Station
+ │    ├── Parrot.py         ## Echo Test
  │    └── Weather.py        ## Open Weather Map 
  │
  ├── env_example.py         ## Example envirement file

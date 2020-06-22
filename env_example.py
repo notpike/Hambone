@@ -44,5 +44,6 @@ class ENV:
         ### Numbers Module ###
         self.SECRET = False  # Controls
 
-        ### Parrot ###
-        self.PARROT_MAX_RECORD_TIME = 15
+       ### Parrot ###
+        self.PARROT_MAX_RECORD_TIME = 10 # Seconds
+        self.PARROT_MSG = "Please leave a message after the beep. Hit pound when done with your message."

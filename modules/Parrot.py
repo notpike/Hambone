@@ -26,16 +26,19 @@ class Parrot(Module):
     dtmfSample = ''
 
     def task(self):
+        logging.info("Parrot Start")
         # Instructions
-        msg = "Please leave a message after the beep. Hit pound when done with your message."
-        self.voice.buildAudio(msg)
+        self.voice.buildAudio(self.env.PARROT_MSG)
         self.tx.txOn()
         self.voice.playAudio()
         self.mAudio.playWav(str(pathlib.Path().absolute()) + "/wav/beep.wav")
         self.tx.txOff()
 
         # Record
+        logging.info("Parrot Start Record")
         self.recordAudio()
+        logging.info("Parrot End Record")
+
         #self.killAudio()
 
         # Playback
@@ -45,7 +48,7 @@ class Parrot(Module):
         self.tx.txOff()
 
         #Logging
-        logging.info("Parrot")
+        logging.info("Parrot End")
 
     def recordAudio(self):
         # start Recording
@@ -68,7 +71,7 @@ class Parrot(Module):
         global dtmfSample
         dtmfSample = ''
 
-        while(dtmfSample != stop and maxTime >= maxTimeCount):  #Keep recording untill stop
+        while(dtmfSample != stop and maxTime >= maxTimeCount):  #Keep recording untill # or maxttime
             data = stream.read(self.env.CHUNK) #Sample
             frames.append(data)                #Save to DTMF sample
             parrotFrames.append(data)          #Save to Parrot.wav
@@ -115,6 +118,7 @@ class Parrot(Module):
             self.audio.terminate()
         else:
             return  
-
+   
+    ## Override
     def run(self):
         self.task()
