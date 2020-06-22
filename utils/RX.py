@@ -52,7 +52,7 @@ class RX:
             frames = []
 
             for i in range(0, int(self.RATE / self.CHUNK * self.RECORD_SECONDS)):
-                data = stream.read(self.CHUNK)
+                data = stream.read(self.CHUNK, exception_on_overflow = False)
                 frames.append(data)
 
             # stop Recording
