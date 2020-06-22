@@ -4,7 +4,7 @@
 # Function: Audio out, uses aplay and mpg123      #
 ###################################################
 
-from Module import *
+from modules.Module import *
 
 import os
 import time

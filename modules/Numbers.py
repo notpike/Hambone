@@ -4,7 +4,7 @@
 # Function: Fake numbers station                  #
 ###################################################
 
-from Module import *
+from modules.Module import *
 from random import *
 
 

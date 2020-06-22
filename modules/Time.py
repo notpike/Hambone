@@ -4,7 +4,7 @@
 # Function: Reads date time using Voice.py        #
 ###################################################
 
-from Module import *
+from modules.Module import *
 from datetime import *
 import time
 

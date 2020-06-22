@@ -7,7 +7,7 @@
 
 import pyowm
 import math
-from Module import *
+from modules.Module import *
 
 
 class Weather(Module):

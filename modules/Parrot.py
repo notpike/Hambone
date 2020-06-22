@@ -8,8 +8,8 @@ import pyaudio
 import wave
 import threading
 
-from Module import *
-from Audio import *
+from modules.Module import *
+from modules.Audio import *
 
 ## Move back to root directory
 import sys
@@ -53,7 +53,7 @@ class Parrot(Module):
                                 rate=self.env.RATE, 
                                 input=True,
                                 frames_per_buffer=self.env.CHUNK)
-                                
+
         frames = []
         parrotFrames = []
 

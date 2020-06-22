@@ -64,8 +64,8 @@ class ModuleController:
             self.numbers.run() 
             return True
 
-        # 9990
-        elif(pin == "9990"):
+        # TEST = 8378
+        elif(pin == "8378"):
             self.parrot.run()
             return True
 
