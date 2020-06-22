@@ -7,12 +7,15 @@
 ###################################################
 
 import logging
+import pathlib
+
 
 ### IMPORT MODULES ###
 from modules.Audio import *
 from modules.Time import *
 from modules.Weather import *
 from modules.Numbers import *
+from modules.Parrot import *
 
 
 class ModuleController:
@@ -25,6 +28,7 @@ class ModuleController:
         self.time = Time()
         self.weather = Weather()
         self.numbers = Numbers()
+        self.parrot = Parrot()
 
     # Select function, PIN goes in, function is preformed
     # and returns True if sucessfull so the PIN cal be cleared
@@ -37,7 +41,7 @@ class ModuleController:
 
         # May 4th be with you
         elif(pin == "054"):
-            self.audio.run("/wav/StarWars3.wav")  #Audio File
+            self.audio.run(str(pathlib.Path().absolute()) + "/wav/StarWars3.wav")  #Audio File
             return True
 
         # DATE = 3283
@@ -60,6 +64,10 @@ class ModuleController:
             self.numbers.run() 
             return True
 
+        # 9990
+        elif(pin == "9990"):
+            self.parrot.run()
+            return True
 
         # Clear pin with "*#"
         elif("*#" in pin):

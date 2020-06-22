@@ -43,3 +43,6 @@ class ENV:
 
         ### Numbers Module ###
         self.SECRET = False  # Controls
+
+        ### Parrot ###
+        self.PARROT_MAX_RECORD_TIME = 15
