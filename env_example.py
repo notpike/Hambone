@@ -1,5 +1,5 @@
 ###################################################
-# FILE: env.py                                #
+# FILE: env.py                                    #
 # AUTHOR: NotPike                                 #
 # Function: Envirement class, vars go here.       #
 ###################################################
@@ -26,7 +26,7 @@ class ENV:
         self.FILE_FORMAT = pyaudio.paInt16 # format of sampling 16 bit int
         self.CHANNELS = 1                  # number of channels it means number of sample in every sampling
         self.RATE = 44100                  # number of sample in 1 second sampling
-        self.CHUNK = 3072                  # length of every chunk
+        self.CHUNK = 2**12                 # length of every chunk
         self.RECORD_SECONDS = 0.4          # time of recording in seconds
         self.INDEX = 0   
       
@@ -44,6 +44,6 @@ class ENV:
         ### Numbers Module ###
         self.SECRET = False  # Controls
 
-       ### Parrot ###
+        ### Parrot ###
         self.PARROT_MAX_RECORD_TIME = 10 # Seconds
         self.PARROT_MSG = "Please leave a message after the beep. Hit pound when done with your message."
