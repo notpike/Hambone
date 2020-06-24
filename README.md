@@ -44,6 +44,7 @@ sudo python3.X main.py
 |   MODULE  |       PIN      |
 +----------------------------+
 | TEST     -->   123         |
+| PARROT   -->   3246 (#ECHO)|
 | AUDIO Ex -->   054         |
 | DATE     -->   3283 (#DATE)|
 | TIME     -->   8463 (#TIME)|
@@ -65,31 +66,38 @@ Global variables such as API keys and the user’s callsign is stored in the ENV
 ## Directory Tree
 ```
 rpi_vx-7r
- ├── log/                ## Application Logs
+ ├── log/                   ## Application Logs
  │    └── event.log
- |
- ├── wav/                ## Audio Files
- ├── util/               ## Application Util Classes
- │    ├── Voice.py       ## Uses Google TTS or espeak to create audio
- │    ├── TX.py          ## Handles GPIO Pin
- │    ├── RX.py          ## Audio Sampling
- │    ├── DTMF.py        ## DTMF Decoding
- │    └── Callsign.py    ## Uses Voice Or cw to play user's callsign
- |
- ├── modules/            ## Modules
- │    ├── Audio.py       ## Uses aplay or mpg123 to play audio files
- │    ├── Time.py        ## Reads current Time and Date
- │    ├── Numbers.py     ## *Random* Numbers Station
- │    └── Weather.py     ## Open Weather Map 
- |
- ├── env_example.py      ## Example envirement file
- ├── env.py              ## Production envirement file
- ├── ModuleController.py ## Module Controller
- └── main.py             ## Main, runs the application
+ │
+ ├── extra/                 ## Documentation, Scripts, Etc
+ │    └── pyaudioHelper.py  ## PyAudio Helper script, finds the mic index
+ │
+ ├── wav/                   ## Audio Files
+ ├── util/                  ## Application Util Classes
+ │    ├── Voice.py          ## Uses Google TTS or espeak to create audio
+ │    ├── TX.py             ## Handles GPIO Pin
+ │    ├── RX.py             ## Audio Sampling
+ │    ├── DTMF.py           ## DTMF Decoding
+ │    └── Callsign.py       ## Uses Voice Or cw to play user's callsign
+ │
+ ├── modules/               ## Modules
+ │    ├── Module.py         ## All Module's Parent Class
+ │    ├── Audio.py          ## Uses aplay or mpg123 to play audio files
+ │    ├── Time.py           ## Reads current Time and Date
+ │    ├── Numbers.py        ## *Random* Numbers Station
+ │    ├── Parrot.py         ## Echo Test
+ │    └── Weather.py        ## Open Weather Map 
+ │
+ ├── env_example.py         ## Example envirement file
+ ├── env.py                 ## Production envirement file
+ ├── ModuleController.py    ## Module Controller
+ └── main.py                ## Main, runs the application
 ```
 
 ## ModuleController and Modules
-You can add your own modules by creating a class under the modules/ folder and linking it to the select() function found in ModuleController. The Module class should handle all TX, Voice, Callsign functions found under the utils/ folder. If you have any global variables such as API keys they should be stored in the ENV class.  
+You can add your own modules by creating a class under the modules/ folder and linking it to the select() function found in ModuleController. The Module class should handle all TX, Voice, Callsign functions found under the utils/ folder. If you have any global variables such as API keys they should be stored in the ENV class. 
+
+Each additional class should inherent the Module() class. Module() brings in Logging, ENV, TX, and Voice by default. All module actions should be defined in the task() function. run() is a helper function for task() and will handle the TX calls. If you need to load audio or anything else that will take time before turning TX on, you can override run() in your child module and make it work how you wish.   
 
 ## YAESU VX-7R 2.5MM JACK
  Although this project can be used for almost any radio below are details on building this for a Yaesu VX-7R. Yaesu handhelds use a 4 point 2.5mm jack for voice, speaker and data. I recycled a broken hand mic while building this so below is the wire coloring correlation and diagram for this jack. Wire colors may vary so always double check with a multimeter.                               
