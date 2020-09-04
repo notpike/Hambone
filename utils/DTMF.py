@@ -46,11 +46,11 @@ class DTMF:
     def dtmfDecode(self):
         if(self.env.RX):
             # reading voice
-            data = wav.read(self.WAVE_OUTPUT_FILENAME)
+            data = wav.read(self.WAVE_OUTPUT_FILENAME, 'rb')
             # data is voice signal. its type is list(or numpy array)
-
             # Calculate fourier trasform of data
-            FourierTransformOfData = np.fft.fft(data, self.RATE)
+            FourierTransformOfData = np.fft.fft(np.array(data[1]), self.RATE)
+
 
             # Convert fourier transform complex number to integer numbers
             for i in range(len(FourierTransformOfData)):

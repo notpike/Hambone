@@ -14,7 +14,7 @@ This program was written for the RPi and Yaesu VX-7R in mind however the core fu
 ## Required Software
 ```
 $ sudo apt update
-$ sudo apt install python3-numpy mpg123 cw espeak-ng
+$ sudo apt install python3-numpy mpg123 cw espeak-ng python3-pip portaudio19-dev
 $ pip3 install pyaudio scipy gTTS pyowm==2.10.0
 ```
 
@@ -155,3 +155,23 @@ For the Yaesu's PTT to be activated Mic needs a 2.2K ohm resistance to ground. V
 ```
 
 ![Yaesu Radio](extra/hambone_radio.jpg)
+
+## CM1xx to UV-5R (aka Kenwood HT connector)
+Make sure your user has write access to /dev/hidrawN
+
+```
+   +----------------------------+      
+   |    CM1xx Speaker out       |
+   |       |                    |
++---------------------+         ++\|
+|      |       |      |            +------+ CM108 PIN 13 (GPIO3)  (you might want to put a resistor here, I didn't because of #yolo)
+|      |       |      |         + <|
++---------------------+         |
+                                |
++-------------+                 |
+|    |    |   |                 |
++-------------+                 |
+  |         |                   |
+  |    CM108 Mic input          |
+  +------------------------------   
+```

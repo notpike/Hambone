@@ -41,14 +41,16 @@ class TX:
 
             # CM1xx init
             if(self.env.CM1xx):
-                # XSSFOX: If there's any logic needed to init the gpio pins for the CM1xx it should go here.
-                pass
-
+                self.CM1xxFile = open(self.env.CM1xx, "wb") # opens a file to the CM1xx hidraw interface that we'll use later on to control TX
+                logging.info("CM1xx control channel open")
+                
         else:
             logging.info("__init__(): TX FUNCTION DISABLED")
 
     def txOn(self):
         if(self.env.DEV == False and self.env.TX):
+
+            logging.info("TX ON")
 
             # RPI TX
             if(self.env.RPI):
@@ -60,8 +62,11 @@ class TX:
 
             #CM1xx TX Off
             if(self.env.CM1xx):
-                # XSSFOX: CM1xx TX On Logic
-                pass
+                self.CM1xxFile.write(b"\x00\x00\x04\x04\x00") 
+                self.CM1xxFile.flush()
+                # this assumes the specific GPIO3 pin, but nearly 99% of setups will be using this pin
+                # we also assume it's not inverted. Future improvement would be to generate these messages
+                # based on env.
 
         else:
             logging.info("txOn(): TX FUNCTION DISABLED")
@@ -70,9 +75,11 @@ class TX:
     def txOff(self):
         if(self.env.DEV == False and self.env.TX):
 
+            logging.info("TX OFF")
+
             # RPI TX Off
             if(self.env.RPI):
-                logging.info("TX OFF")
+                
                 stdr = os.system("echo \"0\" > /sys/class/gpio/gpio" + str(self.GPIO) + "/value")
                 if(stdr > 0):
                     logging.critical("FAILED TO STOP TX")
@@ -80,8 +87,8 @@ class TX:
 
             # CM1xx TX Off
             if(self.env.CM1xx):
-                # XSSFOX: CM1xx TX Off Logic
-                pass
+                self.CM1xxFile.write(b"\x00\x00\x04\x00\x00")
+                self.CM1xxFile.flush()
                                     
         else:
             logging.info("txOff(): TX FUNCTION DISABLED")                

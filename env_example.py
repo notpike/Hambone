@@ -21,8 +21,7 @@ class ENV:
         self.GPIO = 17
 
         ### USB CM1xx ###
-        self.CM1xx = False
-        #self.CM1xx_GPIO = "Dose this even need this var???"
+        self.CM1xx = False # set to /dev/hidrawN for your device
 
         ### Logging ###
         self.LOGGING_LEVEL = logging.INFO
