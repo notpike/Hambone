@@ -157,21 +157,23 @@ For the Yaesu's PTT to be activated Mic needs a 2.2K ohm resistance to ground. V
 ![Yaesu Radio](extra/hambone_radio.jpg)
 
 ## CM1xx to UV-5R (aka Kenwood HT connector)
-Make sure your user has write access to /dev/hidrawN
+Make sure your user has write access to /dev/hidrawN . Colours shown are based on the colours that came on my connector breakout. To prevent RF from entering the audio path it's recommended to use ferrites at both ends of the cable.
+
+CM108 PIN 13 (GPIO3) is on the very corner of one of the sides (see the datasheet to oriente the chip) making it much easier to solder to. Sometimes it's possible to run a wire under between/under the pins and the package itself to give it a good strain relief. 
 
 ```
-   +----------------------------+      
-   |    CM1xx Speaker out       |
+   +-------------(black)--------+      
+   |  CM1xx Speaker out (white) |
    |       |                    |
 +---------------------+         ++\|
-|      |       |      |            +------+ CM108 PIN 13 (GPIO3)  (you might want to put a resistor here, I didn't because of #yolo)
-|      |       |      |         + <|
-+---------------------+         |
+|      |       |      |            +------+ CM108 PIN 13 (GPIO3) 
+|      |       |      |         + <|       (you might want to put a resistor 
++---------------------+         |            here, I didn't because of #yolo)
                                 |
 +-------------+                 |
 |    |    |   |                 |
 +-------------+                 |
   |         |                   |
-  |    CM108 Mic input          |
-  +------------------------------   
+  |    CM108 Mic input  (red)   |
+  +-----------------------------+----- CM108 Ground ( green )
 ```
