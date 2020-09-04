@@ -42,7 +42,7 @@ class TX:
             # CM1xx init
             if(self.env.CM1xx):
                 # XSSFOX: If there's any logic needed to init the gpio pins for the CM1xx it should go here.
-                continue
+                pass
 
         else:
             logging.info("__init__(): TX FUNCTION DISABLED")
@@ -61,7 +61,7 @@ class TX:
             #CM1xx TX Off
             if(self.env.CM1xx):
                 # XSSFOX: CM1xx TX On Logic
-                continue
+                pass
 
         else:
             logging.info("txOn(): TX FUNCTION DISABLED")
