@@ -81,6 +81,7 @@ class TX:
             # CM1xx TX Off
             if(self.env.CM1xx):
                 # XSSFOX: CM1xx TX Off Logic
+                continue
                         
         else:
             logging.info("txOff(): TX FUNCTION DISABLED")                
