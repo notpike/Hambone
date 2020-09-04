@@ -46,7 +46,7 @@ class DTMF:
     def dtmfDecode(self):
         if(self.env.RX):
             # reading voice
-            rate, data = wav.read(self.WAVE_OUTPUT_FILENAME)
+            data = wav.read(self.WAVE_OUTPUT_FILENAME)
             # data is voice signal. its type is list(or numpy array)
 
             # Calculate fourier trasform of data
