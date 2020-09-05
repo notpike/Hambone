@@ -156,8 +156,11 @@ For the Yaesu's PTT to be activated Mic needs a 2.2K ohm resistance to ground. V
 
 ![Yaesu Radio](extra/hambone_radio.jpg)
 
+
 ## CM1xx to UV-5R (aka Kenwood HT connector)
-Make sure your user has write access to /dev/hidrawN . Colours shown are based on the colours that came on my connector breakout. To prevent RF from entering the audio path it's recommended to use ferrites at both ends of the cable.
+By default the env_example.py is set for the RPi GPIO configuration. To configure your application to run with a CM1xx update your environment class so [b]self.RPI = False[b] and [b]self.CM1xx = '/dev/hidrawN'[b].
+
+Make sure your user has write access to /dev/hidrawN. Colours shown are based on the colours that came on my connector breakout. To prevent RF from entering the audio path it's recommended to use ferrites at both ends of the cable.
 
 CM108 PIN 13 (GPIO3) is on the very corner of one of the sides (see the datasheet to oriente the chip) making it much easier to solder to. Sometimes it's possible to run a wire under between/under the pins and the package itself to give it a good strain relief. 
 
@@ -177,3 +180,5 @@ CM108 PIN 13 (GPIO3) is on the very corner of one of the sides (see the datashee
   |    CM108 Mic input  (red)   |
   +-----------------------------+----- CM108 Ground ( green )
 ```
+
+![CM1xx to UV-5R](extra/cm1xx.png)
