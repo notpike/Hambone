@@ -158,7 +158,7 @@ For the Yaesu's PTT to be activated Mic needs a 2.2K ohm resistance to ground. V
 
 
 ## CM1xx to UV-5R (aka Kenwood HT connector)
-By default the env_example.py is set for the RPi GPIO configuration. To configure your application to run with a CM1xx update your environment class so [b]self.RPI = False[b] and [b]self.CM1xx = '/dev/hidrawN'[b].
+By default the env_example.py is set for the RPi GPIO configuration. To configure your application to run with a CM1xx update your environment class so **self.RPI = False** and **self.CM1xx = '/dev/hidrawN'**.
 
 Make sure your user has write access to /dev/hidrawN. Colours shown are based on the colours that came on my connector breakout. To prevent RF from entering the audio path it's recommended to use ferrites at both ends of the cable.
 
