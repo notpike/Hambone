@@ -12,10 +12,17 @@ class ENV:
 
     def __init__(self):
         self.CALLSIGN = "HACKER"
-        self.GPIO = 17
         self.DEV = False
         self.TX = True
         self.RX = True
+
+        ### RPi ###
+        self.RPI = True
+        self.GPIO = 17
+
+        ### USB CM1xx ###
+        self.CM1xx = False # set to /dev/hidrawN for your device
+        #self.CM1xx = '/dev/hidrawN'
 
         ### Logging ###
         self.LOGGING_LEVEL = logging.INFO
