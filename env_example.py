@@ -22,6 +22,7 @@ class ENV:
 
         ### USB CM1xx ###
         self.CM1xx = False # set to /dev/hidrawN for your device
+        #self.CM1xx = '/dev/hidrawN'
 
         ### Logging ###
         self.LOGGING_LEVEL = logging.INFO
